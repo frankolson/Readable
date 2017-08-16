@@ -1,6 +1,6 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
@@ -32,16 +32,20 @@ class App extends PureComponent {
         </div>
 
         <div className="App-intro">
-          <Route exact path="/" component={HomeContainer} />
-          <Route path="/posts/:postId" render={({ match }) => {
-            const post = posts.find(p => p.id === match.params.postId)
+          <BrowserRouter>
+            <div>
+              <Route exact path="/" component={HomeContainer} />
+              <Route path="/posts/:postId" render={({ match }) => {
+                const post = posts.find(p => p.id === match.params.postId)
 
-            return(
-              <div>
-                {post && <Post post={post} />}
-              </div>
-            );
-          }} />
+                return(
+                  <div>
+                    {post && <Post post={post} />}
+                  </div>
+                );
+              }} />
+            </div>
+          </BrowserRouter>
         </div>
       </div>
     );
