@@ -7,14 +7,14 @@ import { Provider } from 'react-redux'
 // Project Assets
 import store, { history } from './store'
 import './index.css';
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <AppContainer />
     </ConnectedRouter>
   </Provider>
 , document.getElementById('root'));

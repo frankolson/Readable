@@ -3,9 +3,15 @@ import React, { PureComponent } from 'react';
 
 class Home extends PureComponent {
   render() {
+    const { categories } = this.props;
     return (
       <div>
-        To get started, edit <code>src/App.js</code> and save to reload.
+        <b>Categories:</b>
+        <ul>
+          {Object.keys(categories).map((id) =>
+            <li key={id}>{categories[id].name}</li>
+          )}
+        </ul>
       </div>
     );
   }

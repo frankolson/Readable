@@ -8,6 +8,10 @@ import logo from '../../logo.svg';
 import './App.css';
 
 class App extends PureComponent {
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   render() {
     return (
       <div className="App">
@@ -15,9 +19,9 @@ class App extends PureComponent {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <Route exact path="/" component={HomeContainer} />
-        </p>
+        </div>
       </div>
     );
   }
