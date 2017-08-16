@@ -27,7 +27,8 @@ class App extends PureComponent {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Readable</h2>
+          <h5>A blogging site for those who like it simple</h5>
         </div>
 
         <div className="App-intro">
