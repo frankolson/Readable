@@ -1,23 +1,20 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class Home extends PureComponent {
+const propTypes = {
+  category: PropTypes.string.isRequired,
+  posts: PropTypes.array.isRequired,
+};
+
+class Category extends PureComponent {
   render() {
-    const { categories, posts } = this.props;
+    const { category, posts } = this.props;
     return (
       <div>
         <div>
-          <b>Categories:</b>
-          <ul>
-            {Object.keys(categories).map(id =>
-              <li key={id}>
-                <Link to={`/categories/${categories[id].name}`}>
-                  {categories[id].name}
-                </Link>
-              </li>
-            )}
-          </ul>
+          <h1>{category}</h1>
         </div>
 
         <div>
@@ -35,4 +32,6 @@ class Home extends PureComponent {
   }
 }
 
-export default Home;
+Category.propTypes = propTypes;
+
+export default Category;

@@ -4,6 +4,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
+import CategoryContainer from '../../containers/CategoryContainer';
 import HomeContainer from '../../containers/HomeContainer';
 import PostContainer from '../../containers/PostContainer';
 import logo from '../../logo.svg';
@@ -34,10 +35,11 @@ class App extends PureComponent {
             <div>
               <Route exact path="/" component={HomeContainer} />
               <Route path="/posts/:postId" render={({ match }) => (
-                <div>
-                  {<PostContainer postId={match.params.postId} />}
-                </div>
+                <PostContainer postId={match.params.postId} />
               )} />
+              <Route path="/categories/:category" render={({ match }) =>
+                <CategoryContainer category={match.params.category} />
+              } />
             </div>
           </BrowserRouter>
         </div>
