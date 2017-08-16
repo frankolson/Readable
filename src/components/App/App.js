@@ -10,6 +10,7 @@ import './App.css';
 class App extends PureComponent {
   componentDidMount() {
     this.props.getCategories();
+    this.props.getPosts();
   }
 
   render() {
