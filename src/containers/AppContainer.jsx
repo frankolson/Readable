@@ -7,13 +7,9 @@ import App from '../components/App';
 import { getCategories } from '../actions/categoriesActions';
 import { getPosts } from '../actions/postsActions';
 
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   getCategories: () => dispatch(getCategories()),
   getPosts: () => dispatch(getPosts())
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

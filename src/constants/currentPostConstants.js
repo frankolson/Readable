@@ -1,0 +1,1 @@
+export const ADD_CURRENT_POST = 'ADD_CURRENT_POST';

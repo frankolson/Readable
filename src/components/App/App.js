@@ -4,15 +4,14 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
-import HomeContainer from '../../containers/HomeContainer'
-import Post from '../Post'
+import HomeContainer from '../../containers/HomeContainer';
+import PostContainer from '../../containers/PostContainer';
 import logo from '../../logo.svg';
 import './App.css';
 
 const propTypes = {
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired,
 };
 
 class App extends PureComponent {
@@ -22,7 +21,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const { posts } = this.props;
     return (
       <div className="App">
         <div className="App-header">
@@ -35,15 +33,11 @@ class App extends PureComponent {
           <BrowserRouter>
             <div>
               <Route exact path="/" component={HomeContainer} />
-              <Route path="/posts/:postId" render={({ match }) => {
-                const post = posts.find(p => p.id === match.params.postId)
-
-                return(
-                  <div>
-                    {post && <Post post={post} />}
-                  </div>
-                );
-              }} />
+              <Route path="/posts/:postId" render={({ match }) => (
+                <div>
+                  {<PostContainer postId={match.params.postId} />}
+                </div>
+              )} />
             </div>
           </BrowserRouter>
         </div>

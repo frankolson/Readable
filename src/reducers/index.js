@@ -4,10 +4,12 @@ import { combineReducers } from 'redux';
 
 // Project Assets
 import categories from './categoriesReducer';
+import currentPost from './currentPostReducer';
 import posts from './postsReducer';
 
 export default combineReducers({
   categories,
+  currentPost,
   posts,
   routing: routerReducer
 });
