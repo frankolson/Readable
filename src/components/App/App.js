@@ -24,10 +24,10 @@ class App extends PureComponent {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div>
           <Header />
 
-          <div className="App-intro">
+          <div className="container container-small">
             <Route exact path="/" component={HomeContainer} />
             <Route path="/posts/:postId" render={({ match }) => (
               <PostContainer postId={match.params.postId} />
