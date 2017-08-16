@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 // Project Assets
 import CategoryContainer from '../../containers/CategoryContainer';
+import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
 import PostContainer from '../../containers/PostContainer';
-import logo from '../../logo.svg';
 import './App.css';
 
 const propTypes = {
@@ -23,27 +23,21 @@ class App extends PureComponent {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Readable</h2>
-          <h5>A blogging site for those who like it simple</h5>
-        </div>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
 
-        <div className="App-intro">
-          <BrowserRouter>
-            <div>
-              <Route exact path="/" component={HomeContainer} />
-              <Route path="/posts/:postId" render={({ match }) => (
-                <PostContainer postId={match.params.postId} />
-              )} />
-              <Route path="/categories/:category" render={({ match }) =>
-                <CategoryContainer category={match.params.category} />
-              } />
-            </div>
-          </BrowserRouter>
+          <div className="App-intro">
+            <Route exact path="/" component={HomeContainer} />
+            <Route path="/posts/:postId" render={({ match }) => (
+              <PostContainer postId={match.params.postId} />
+            )} />
+            <Route path="/categories/:category" render={({ match }) =>
+              <CategoryContainer category={match.params.category} />
+            } />
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
