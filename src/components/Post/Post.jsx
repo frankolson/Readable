@@ -3,7 +3,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+// Project Assets
+import Comment from '../Comment';
+
 const propTypes = {
+  comments: PropTypes.array.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -21,11 +25,19 @@ const propTypes = {
 class Post extends PureComponent {
   componentDidMount() {
     this.props.getPost(this.props.postId);
+    this.props.getPostComments(this.props.postId);
   }
 
   render() {
     if (this.props.post) {
       const { author, body, timestamp, title, voteScore } = this.props.post;
+
+      const renderedComments = this.props.comments.map(comment =>
+        <div key={comment.id}>
+          <hr />
+          <Comment comment={comment} />
+        </div>
+      );
       return (
         <div>
           <h1>{title}</h1>
@@ -36,6 +48,14 @@ class Post extends PureComponent {
           <hr />
 
           <p>{body}</p>
+
+          <br /><br /><br />
+
+          <h2>Comments</h2>
+          {(this.props.comments.length > 0)
+            ? renderedComments
+            : <p>There are no comments</p>
+          }
         </div>
       );
     } else {

@@ -6,10 +6,12 @@ import { combineReducers } from 'redux';
 import categories from './categoriesReducer';
 import currentPost from './currentPostReducer';
 import posts from './postsReducer';
+import postComments from './postCommentsReducer';
 
 export default combineReducers({
   categories,
   currentPost,
   posts,
+  postComments,
   routing: routerReducer
 });
