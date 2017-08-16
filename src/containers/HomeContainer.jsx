@@ -1,5 +1,6 @@
 // Vendor Assets
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import Home from '../components/Home';
@@ -9,4 +10,4 @@ const mapStateToProps = ({categories, posts}) => ({
   posts,
 })
 
-export default connect(mapStateToProps, null)(Home);
+export default withRouter(connect(mapStateToProps, null)(Home));

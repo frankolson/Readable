@@ -1,5 +1,6 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 class Home extends PureComponent {
   render() {
@@ -20,7 +21,7 @@ class Home extends PureComponent {
           <ul>
             {posts.map(post =>
               <li key={post.id}>
-                {post.title} ~ <i>{post.author}</i>
+                <Link to={`/posts/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
               </li>
             )}
           </ul>
