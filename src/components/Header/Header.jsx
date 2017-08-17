@@ -1,10 +1,15 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // Project Assets
 import logo from '../../logo.svg';
 import './Header.css';
+
+const propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 class Header extends PureComponent {
   render() {
@@ -27,17 +32,21 @@ class Header extends PureComponent {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbar-collapse-links">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to="/post/new" className="nav-link">Write a story +</Link>
-              </li>
-            </ul>
-          </div>
+          {this.props.history.location.pathname !== "/post/new" &&
+            <div className="collapse navbar-collapse" id="navbar-collapse-links">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to="/post/new" className="nav-link">Write a story +</Link>
+                </li>
+              </ul>
+            </div>
+          }
         </div>
       </nav>
     );
   }
 }
+
+Header.propTypes = propTypes;
 
 export default Header;

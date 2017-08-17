@@ -26,7 +26,7 @@ class App extends PureComponent {
     return (
       <BrowserRouter>
         <div>
-          <Header />
+          <Route path="/" component={Header} />
 
           <div className="container container-small">
             <Route exact path="/" component={HomeContainer} />
