@@ -3,6 +3,9 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// Project Assets
+import * as sort from '../../utils/sort';
+
 const propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -19,7 +22,7 @@ class Posts extends PureComponent {
       <div>
         <b>Posts:</b>
         <ul>
-          {posts.map(post =>
+          {sort.dateDescending(posts).map(post =>
             <li key={post.id}>
               <Link to={`/posts/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
             </li>

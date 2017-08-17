@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // Project Assets
 import Comment from '../Comment';
 import CommentFormContainer from '../../containers/CommentFormContainer';
+import * as sort from '../../utils/sort';
 
 const propTypes = {
   comments: PropTypes.array.isRequired,
@@ -12,20 +13,10 @@ const propTypes = {
 }
 
 class Comments extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.dateSort = this.dateSort.bind(this);
-  }
-
-  dateSort() {
-    return this.props.comments.sort((a, b) => b.timestamp - a.timestamp);
-  }
-
   render() {
     const { comments } = this.props;
 
-    const renderedComments = this.dateSort().map(comment =>
+    const renderedComments = sort.dateDescending(comments).map(comment =>
       <Comment
         key={comment.id}
         comment={comment}
