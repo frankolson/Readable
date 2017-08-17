@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 // Project Assets
 import CategoryContainer from '../../containers/CategoryContainer';
+import CommentsContainer from '../../containers/CommentsContainer';
 import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
 import PostContainer from '../../containers/PostContainer';
@@ -32,7 +33,10 @@ class App extends PureComponent {
             <Route exact path="/" component={HomeContainer} />
             <Route path="/post/new" component={PostFormContainer} />
             <Route path="/posts/:postId" render={({ match }) => (
-              <PostContainer postId={match.params.postId} />
+              <div>
+                <PostContainer postId={match.params.postId} />
+                <CommentsContainer postId={match.params.postId} />
+              </div>
             )} />
             <Route path="/categories/:category" render={({ match }) =>
               <CategoryContainer category={match.params.category} />

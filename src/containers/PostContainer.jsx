@@ -8,7 +8,6 @@ import { getCurrentPost, clearCurrentPost } from '../actions/currentPostActions'
 import { getPostComments } from '../actions/postCommentsActions';
 
 const mapStateToProps = ({ postComments, currentPost }, { postId }) => ({
-  comments: postComments,
   post: currentPost,
   postId,
 })

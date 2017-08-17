@@ -31,7 +31,7 @@ class Comment extends PureComponent {
           <p className="card-text">{body}</p>
 
           <h6 className="card-subtitle mt-2 text-muted">
-            {`votes: ${voteScore}`}
+            {`${voteScore} points`}
 
             <div className="float-right">
               <a href="#" className="card-link text-secondary">Edit</a>

@@ -3,12 +3,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-// Project Assets
-import Comment from '../Comment';
-
 const propTypes = {
   clearCurrentPost: PropTypes.func.isRequired,
-  comments: PropTypes.array.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -37,30 +33,18 @@ class Post extends PureComponent {
     if (this.props.post) {
       const { author, body, timestamp, title, voteScore } = this.props.post;
 
-      const renderedComments = this.props.comments.map(comment =>
-        <Comment
-          key={comment.id}
-          comment={comment}
-        />
-      );
-
       return (
         <div>
-          <h1>{title}</h1>
-          <p>{moment(timestamp).format('D MMM YYYY')}</p>
-          <p>{`votes: ${voteScore}`}</p>
-          <p>{author}</p>
+          <div className="post-info mb-3">
+            <div className="post-author">{author}</div>
+            <div className="post-time-score text-secondary">
+              {`${moment(timestamp).format('D MMM YYYY')} ~ ${voteScore} points`}
+            </div>
+          </div>
 
-          <hr />
+          <h1 className="post-title mb-5">{title}</h1>
 
-          <p>{body}</p>
-
-          <br /><br /><br />
-
-          {(this.props.comments.length > 0)
-            ? renderedComments
-            : <p>There are no comments</p>
-          }
+          <p className="post-body mb-5">{body}</p>
         </div>
       );
     } else {
