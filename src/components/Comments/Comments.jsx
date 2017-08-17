@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // Project Assets
 import Comment from '../Comment';
+import CommentFormContainer from '../../containers/CommentFormContainer';
 
 const propTypes = {
   comments: PropTypes.array.isRequired,
@@ -22,6 +23,8 @@ class Comments extends PureComponent {
     return (
       <div>
         <hr />
+
+        <CommentFormContainer postId={this.props.postId} />
 
         {(this.props.comments.length > 0)
           ? renderedComments

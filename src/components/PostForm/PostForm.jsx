@@ -67,8 +67,8 @@ class PostForm extends PureComponent {
           value={body}
         />
 
-        <button className="btn btn-primary">
-          Save
+        <button className="btn btn-primary float-right">
+          Publish
         </button>
       </form>
     );
