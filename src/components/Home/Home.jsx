@@ -2,6 +2,9 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+// Project Assets
+import Posts from '../Posts';
+
 class Home extends PureComponent {
   render() {
     const { categories, posts } = this.props;
@@ -20,16 +23,7 @@ class Home extends PureComponent {
           </ul>
         </div>
 
-        <div>
-          <b>Posts:</b>
-          <ul>
-            {posts.map(post =>
-              <li key={post.id}>
-                <Link to={`/posts/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
-              </li>
-            )}
-          </ul>
-        </div>
+        <Posts posts={posts} />
       </div>
     );
   }

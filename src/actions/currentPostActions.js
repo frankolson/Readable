@@ -1,3 +1,7 @@
+// Vendor Assets
+import { routerActions } from 'react-router-redux';
+
+// Project Assets
 import * as actionTypes from '../constants/currentPostConstants';
 import * as api from '../utils/api';
 
@@ -9,6 +13,16 @@ export const getCurrentPost = (postId) => {
         post,
       });
     });
+}
+
+export const postPost = (post) => {
+  return dispatch => api.postPost(post)
+    .then(post =>
+      dispatch(clearCurrentPost())
+    )
+    .then(() =>
+      dispatch(routerActions.push(`/posts/${post.id}`))
+    );
 }
 
 export const clearCurrentPost = () => ({

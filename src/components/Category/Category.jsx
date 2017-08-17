@@ -1,7 +1,9 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
+// Project Assets
+import Posts from '../Posts';
 
 const propTypes = {
   category: PropTypes.string.isRequired,
@@ -17,16 +19,7 @@ class Category extends PureComponent {
           <h1>{category}</h1>
         </div>
 
-        <div>
-          <b>Posts:</b>
-          <ul>
-            {posts.map(post =>
-              <li key={post.id}>
-                <Link to={`/posts/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
-              </li>
-            )}
-          </ul>
-        </div>
+        <Posts posts={posts} />
       </div>
     );
   }

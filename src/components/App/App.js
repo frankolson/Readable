@@ -1,6 +1,6 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
@@ -25,25 +25,23 @@ class App extends PureComponent {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Route path="/" component={Header} />
+      <div>
+        <Route path="/" component={Header} />
 
-          <div className="container container-small">
-            <Route exact path="/" component={HomeContainer} />
-            <Route path="/post/new" component={PostFormContainer} />
-            <Route path="/posts/:postId" render={({ match }) => (
-              <div>
-                <PostContainer postId={match.params.postId} />
-                <CommentsContainer postId={match.params.postId} />
-              </div>
-            )} />
-            <Route path="/categories/:category" render={({ match }) =>
-              <CategoryContainer category={match.params.category} />
-            } />
-          </div>
+        <div className="container container-small">
+          <Route exact path="/" component={HomeContainer} />
+          <Route path="/post/new" component={PostFormContainer} />
+          <Route path="/posts/:postId" render={({ match }) => (
+            <div>
+              <PostContainer postId={match.params.postId} />
+              <CommentsContainer postId={match.params.postId} />
+            </div>
+          )} />
+          <Route path="/categories/:category" render={({ match }) =>
+            <CategoryContainer category={match.params.category} />
+          } />
         </div>
-      </BrowserRouter>
+      </div>
     );
   }
 }

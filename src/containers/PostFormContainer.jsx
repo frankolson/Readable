@@ -12,6 +12,7 @@ const mapStateToProps = ({ categories, currentPost }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  handleSubmit: data =>dispatch(currentPostActions.postPost(data)),
   updateCurentPostTitle: data => dispatch(currentPostActions.updateCurentPostTitle(data)),
   updateCurentPostAuthor: data => dispatch(currentPostActions.updateCurentPostAuthor(data)),
   updateCurentPostCategory: data => dispatch(currentPostActions.updateCurentPostCategory(data)),

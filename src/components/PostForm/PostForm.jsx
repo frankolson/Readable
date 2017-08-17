@@ -34,8 +34,12 @@ class PostForm extends PureComponent {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("submitted");
+    this.props.handleSubmit({
+      ...this.props.post,
+      timestamp: new Date().getTime(),
+    })
   }
+
   render() {
     const { author, body, category, title } = this.props.post;
     const { categories } = this.props;

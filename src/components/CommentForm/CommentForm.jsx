@@ -39,6 +39,7 @@ class CommentForm extends PureComponent {
       timestamp: new Date().getTime(),
     })
   }
+
   render() {
     const { author, body } = this.props.comment;
 
