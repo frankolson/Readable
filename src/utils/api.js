@@ -64,8 +64,8 @@ export const postPostVote = (postId, params) =>
     body: JSON.stringify(params)
   }).then(res => res.json())
 
-export const putPost = (postId, params) =>
-  fetch(`${api}/posts/${postId}`, {
+export const putPost = (params) =>
+  fetch(`${api}/posts/${params.id}`, {
     method: 'PUT',
     headers: {
       ...headers,
@@ -99,8 +99,8 @@ export const postComment = (params) =>
     body: JSON.stringify(params)
   }).then(res => res.json())
 
-export const postCommentVote = (commentId, params) =>
-  fetch(`${api}/comments/${commentId}`, {
+export const postCommentVote = (params) =>
+  fetch(`${api}/comments/${params.id}`, {
     method: 'POST',
     headers: {
       ...headers,

@@ -1,3 +1,7 @@
+// Vendor Assets
+import uuid from 'uuid';
+
+// Project Assets
 import * as actionTypes from '../constants/currentPostConstants';
 
 const initialState = {
@@ -5,10 +9,10 @@ const initialState = {
   body: '',
   category: '',
   deleted: false,
-  id: '',
+  id: uuid(),
   timestamp: new Date().getTime(),
   title: '',
-  voteScore: 0,
+  voteScore: 1,
 };
 
 export default function reducer(state=initialState, action) {

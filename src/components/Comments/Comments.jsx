@@ -12,8 +12,20 @@ const propTypes = {
 }
 
 class Comments extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.dateSort = this.dateSort.bind(this);
+  }
+
+  dateSort() {
+    return this.props.comments.sort((a, b) => b.timestamp - a.timestamp);
+  }
+
   render() {
-    const renderedComments = this.props.comments.map(comment =>
+    const { comments } = this.props;
+
+    const renderedComments = this.dateSort().map(comment =>
       <Comment
         key={comment.id}
         comment={comment}
@@ -26,7 +38,7 @@ class Comments extends PureComponent {
 
         <CommentFormContainer postId={this.props.postId} />
 
-        {(this.props.comments.length > 0)
+        {(comments.length > 0)
           ? renderedComments
           : <p>There are no comments</p>
         }

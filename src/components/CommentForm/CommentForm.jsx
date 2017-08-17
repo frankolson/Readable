@@ -17,6 +17,9 @@ const propTypes = {
     timestamp: PropTypes.number.isRequired,
     voteScore: PropTypes.number.isRequired,
   }),
+  handleSubmit: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  postId: PropTypes.string.isRequired,
   updateCurentCommentAuthor: PropTypes.func.isRequired,
   updateCurentCommentBody: PropTypes.func.isRequired,
 }
@@ -30,7 +33,11 @@ class CommentForm extends PureComponent {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("submitted");
+    this.props.handleSubmit({
+      ...this.props.comment,
+      parentId: this.props.postId,
+      timestamp: new Date().getTime(),
+    })
   }
   render() {
     const { author, body } = this.props.comment;

@@ -1,14 +1,18 @@
+// Vendor Assets
+import uuid from 'uuid';
+
+// Project Assets
 import * as actionTypes from '../constants/currentCommentConstants';
 
 const initialState = {
   author: '',
   deleted: false,
   body: '',
-  id: '',
+  id: uuid(),
   parentDeleted: false,
   parentId: '',
   timestamp: new Date().getTime(),
-  voteScore: 0,
+  voteScore: 1,
 };
 
 export default function reducer(state=initialState, action) {

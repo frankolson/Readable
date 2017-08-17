@@ -1,5 +1,6 @@
 import * as actionTypes from '../constants/currentCommentConstants';
 import * as api from '../utils/api';
+import * as postCommentsActions from './postCommentsActions';
 
 export const getCurrentComment = (commentId) => {
   return dispatch => api.getComment(commentId)
@@ -8,6 +9,14 @@ export const getCurrentComment = (commentId) => {
         type: actionTypes.ADD_CURRENT_COMMENT,
         comment,
       });
+    });
+}
+
+export const postComment = (comment) => {
+  return dispatch => api.postComment(comment)
+    .then((comment) => {
+      dispatch(postCommentsActions.getPostComments(comment.parentId));
+      dispatch(clearCurrentComment());
     });
 }
 

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import CommentForm from '../components/CommentForm';
+import * as api from '../utils/api';
 import * as currentCommentActions from '../actions/currentCommentActions';
 
 const mapStateToProps = ({ categories, currentComment }, {postId}) => ({
@@ -12,6 +13,8 @@ const mapStateToProps = ({ categories, currentComment }, {postId}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  handleSubmit: data =>dispatch(currentCommentActions.postComment(data)),
+  handleUpdate: api.putComment,
   updateCurentCommentAuthor: data => dispatch(currentCommentActions.updateCurentCommentAuthor(data)),
   updateCurentCommentBody: data => dispatch(currentCommentActions.updateCurentCommentBody(data)),
 })
