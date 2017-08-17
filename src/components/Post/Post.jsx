@@ -38,11 +38,12 @@ class Post extends PureComponent {
       const { author, body, timestamp, title, voteScore } = this.props.post;
 
       const renderedComments = this.props.comments.map(comment =>
-        <div key={comment.id}>
-          <hr />
-          <Comment comment={comment} />
-        </div>
+        <Comment
+          key={comment.id}
+          comment={comment}
+        />
       );
+
       return (
         <div>
           <h1>{title}</h1>
@@ -56,7 +57,6 @@ class Post extends PureComponent {
 
           <br /><br /><br />
 
-          <h2>Comments</h2>
           {(this.props.comments.length > 0)
             ? renderedComments
             : <p>There are no comments</p>

@@ -1,0 +1,4 @@
+.inline-headers h4, .inline-headers h6 {
+  display: inline-block;
+  vertical-align: baseline;
+}

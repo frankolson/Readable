@@ -3,6 +3,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+// Project Assets
+import './Comment.css'
+
 const propTypes = {
   comment: PropTypes.shape({
     author: PropTypes.string.isRequired,
@@ -18,11 +21,24 @@ class Comment extends PureComponent {
     const { author, body, timestamp, voteScore } = this.props.comment;
 
     return (
-      <div>
-        <h3>{author}</h3>
-        <p>{moment(timestamp).format('D MMM YYYY')}</p>
-        <p>{`votes: ${voteScore}`}</p>
-        <p>{body}</p>
+      <div className="card mb-3">
+        <div className="card-body">
+          <div className="card-title inline-headers">
+            <h4 className="mr-2">{author}</h4>
+            <h6 className="text-secondary">{moment(timestamp).format('D MMM YYYY')}</h6>
+          </div>
+
+          <p className="card-text">{body}</p>
+
+          <h6 className="card-subtitle mt-2 text-muted">
+            {`votes: ${voteScore}`}
+
+            <div className="float-right">
+              <a href="#" className="card-link text-secondary">Edit</a>
+              <a href="#" className="card-link text-secondary">Delete</a>
+            </div>
+          </h6>
+        </div>
       </div>
     );
   }
