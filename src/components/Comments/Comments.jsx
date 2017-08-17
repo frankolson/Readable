@@ -40,7 +40,7 @@ class Comments extends PureComponent {
 
         {(comments.length > 0)
           ? renderedComments
-          : <p>There are no comments</p>
+          : <p>There are no comments, you could be the first!</p>
         }
       </div>
     );
