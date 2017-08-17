@@ -7,6 +7,7 @@ import moment from 'moment';
 import Comment from '../Comment';
 
 const propTypes = {
+  clearCurrentPost: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
@@ -26,6 +27,10 @@ class Post extends PureComponent {
   componentDidMount() {
     this.props.getPost(this.props.postId);
     this.props.getPostComments(this.props.postId);
+  }
+
+  componentWillUnmount() {
+    this.props.clearCurrentPost();
   }
 
   render() {

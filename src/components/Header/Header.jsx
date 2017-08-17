@@ -30,7 +30,7 @@ class Header extends PureComponent {
           <div className="collapse navbar-collapse" id="navbar-collapse-links">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link">Write a story +</Link>
+                <Link to="/post/new" className="nav-link">Write a story +</Link>
               </li>
             </ul>
           </div>

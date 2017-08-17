@@ -8,6 +8,7 @@ import CategoryContainer from '../../containers/CategoryContainer';
 import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
 import PostContainer from '../../containers/PostContainer';
+import PostFormContainer from '../../containers/PostFormContainer';
 import './App.css';
 
 const propTypes = {
@@ -29,6 +30,7 @@ class App extends PureComponent {
 
           <div className="container container-small">
             <Route exact path="/" component={HomeContainer} />
+            <Route path="/post/new" component={PostFormContainer} />
             <Route path="/posts/:postId" render={({ match }) => (
               <PostContainer postId={match.params.postId} />
             )} />
