@@ -45,6 +45,11 @@ class Post extends PureComponent {
           <h1 className="post-title mb-5">{title}</h1>
 
           <p className="post-body mb-5">{body}</p>
+
+          <div className="mb-2 d-flex justify-content-end">
+            <a href="#" className="btn btn-link text-secondary">Edit</a>
+            <a href="#" className="btn btn-link text-secondary">Delete</a>
+          </div>
         </div>
       );
     } else {
