@@ -67,7 +67,7 @@ class CommentForm extends PureComponent {
               value={body}
             />
 
-            <button className="btn btn-primary float-right">
+            <button className="btn btn-outline-primary">
               {id ? 'Update' : 'Publish'}
             </button>
           </form>
