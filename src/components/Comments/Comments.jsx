@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Comment from '../Comment';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 import * as sort from '../../utils/sort';
+import './Comments.css';
 
 const propTypes = {
   comments: PropTypes.array.isRequired,
@@ -24,15 +25,16 @@ class Comments extends PureComponent {
     );
 
     return (
-      <div>
-        <hr />
+      <div className="comments-section border pt-4">
 
-        <CommentFormContainer postId={this.props.postId} />
+        <div className="container container-small">
+          <CommentFormContainer postId={this.props.postId} />
 
-        {(comments.length > 0)
-          ? renderedComments
-          : <p>There are no comments, you could be the first!</p>
-        }
+          {(comments.length > 0)
+            ? renderedComments
+            : <p>There are no comments, you could be the first!</p>
+          }
+        </div>
       </div>
     );
   }

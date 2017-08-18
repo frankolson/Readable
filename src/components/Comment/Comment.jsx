@@ -8,13 +8,23 @@ import './Comment.css'
 
 const propTypes = {
   comment: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    timestamp: PropTypes.number.isRequired,
-    voteScore: PropTypes.number.isRequired,
+    author: PropTypes.string,
+    body: PropTypes.string,
+    id: PropTypes.string,
+    timestamp: PropTypes.number,
+    voteScore: PropTypes.number,
   }),
-}
+};
+
+const defaultProps = {
+  comment: {
+    author: null,
+    body: null,
+    id: null,
+    timestamp: null,
+    voteScore: null,
+  },
+};
 
 class Comment extends PureComponent {
   render() {
@@ -25,7 +35,9 @@ class Comment extends PureComponent {
         <div className="card-body">
           <div className="card-title inline-headers">
             <h4 className="mr-2">{author}</h4>
-            <h6 className="text-secondary">{moment(timestamp).format('D MMM YYYY')}</h6>
+            <h6 className="text-secondary">
+              {timestamp && moment(timestamp).format('D MMM YYYY')}
+            </h6>
           </div>
 
           <p className="card-text">{body}</p>
@@ -45,5 +57,6 @@ class Comment extends PureComponent {
 }
 
 Comment.propTypes = propTypes;
+Comment.defaultProps = defaultProps;
 
 export default Comment;

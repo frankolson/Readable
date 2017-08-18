@@ -34,13 +34,18 @@ class App extends PureComponent {
           <Route path="/posts/:postId" render={({ match }) => (
             <div>
               <PostContainer postId={match.params.postId} />
-              <CommentsContainer postId={match.params.postId} />
             </div>
           )} />
           <Route path="/categories/:category" render={({ match }) =>
             <CategoryContainer category={match.params.category} />
           } />
         </div>
+
+        <Route path="/posts/:postId" render={({ match }) => (
+          <div>
+            <CommentsContainer postId={match.params.postId} />
+          </div>
+        )} />
       </div>
     );
   }

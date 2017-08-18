@@ -7,7 +7,7 @@ import CommentForm from '../components/CommentForm';
 import * as api from '../utils/api';
 import * as currentCommentActions from '../actions/currentCommentActions';
 
-const mapStateToProps = ({ categories, currentComment }, {postId}) => ({
+const mapStateToProps = ({ categories, currentComment }, { postId }) => ({
   postId,
   comment: currentComment,
 })
