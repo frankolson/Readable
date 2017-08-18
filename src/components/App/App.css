@@ -1,8 +1,8 @@
 body {
-  padding-top: 125px;
+  padding-top: 110px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .container-small {
         width: 600px;
     }
@@ -14,7 +14,7 @@ body {
 }
 @media (min-width: 1200px) {
     .container-small {
-        width: 800px;
+        width: 750px;
     }
 }
 
