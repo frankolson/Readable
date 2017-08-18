@@ -25,6 +25,17 @@ export const postPost = (post) => {
     );
 }
 
+
+export const putPost = (post) => {
+  return dispatch => api.putPost(post)
+    .then(post =>
+      dispatch(clearCurrentPost())
+    )
+    .then(() =>
+      dispatch(routerActions.push(`/posts/show/${post.id}`))
+    );
+}
+
 export const clearCurrentPost = () => ({
   type: actionTypes.CLEAR_CURRENT_POST
 })

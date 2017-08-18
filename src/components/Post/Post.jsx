@@ -1,20 +1,21 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const propTypes = {
   clearCurrentPost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    deleted: PropTypes.bool.isRequired,
-    id: PropTypes.string.isRequired,
-    timestamp: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    voteScore: PropTypes.number.isRequired,
+    author: PropTypes.string,
+    body: PropTypes.string,
+    category: PropTypes.string,
+    deleted: PropTypes.bool,
+    id: PropTypes.string,
+    timestamp: PropTypes.number,
+    title: PropTypes.string,
+    voteScore: PropTypes.number,
   }),
   postId: PropTypes.string.isRequired,
 }
@@ -31,7 +32,7 @@ class Post extends PureComponent {
 
   render() {
     if (this.props.post) {
-      const { author, body, timestamp, title, voteScore } = this.props.post;
+      const { author, body, id, timestamp, title, voteScore } = this.props.post;
 
       return (
         <div>
@@ -47,7 +48,9 @@ class Post extends PureComponent {
           <p className="post-body mb-5">{body}</p>
 
           <div className="mb-2 d-flex justify-content-end">
-            <a href="#" className="btn btn-link text-secondary">Edit</a>
+            <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">
+              Edit
+            </Link>
             <a href="#" className="btn btn-link text-secondary">Delete</a>
           </div>
         </div>

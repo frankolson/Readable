@@ -1,6 +1,7 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 
 // Project Assets
 import TextInput from '../TextInput';
@@ -13,12 +14,11 @@ const propTypes = {
     author: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    deleted: PropTypes.bool.isRequired,
-    id: PropTypes.string.isRequired,
-    timestamp: PropTypes.number.isRequired,
+    id: PropTypes.string,
+    timestamp: PropTypes.number,
     title: PropTypes.string.isRequired,
-    voteScore: PropTypes.number.isRequired,
   }),
+  getPost: PropTypes.func.isRequired,
   updateCurentPostAuthor: PropTypes.func.isRequired,
   updateCurentPostBody: PropTypes.func.isRequired,
   updateCurentPostCategory: PropTypes.func.isRequired,
@@ -30,22 +30,38 @@ class PostForm extends PureComponent {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.post.id) {
+      this.props.getPost(this.props.post.id);
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.handleSubmit({
       ...this.props.post,
+      id: uuid(),
+      timestamp: new Date().getTime(),
+    })
+  }
+
+  handleUpdate(event) {
+    event.preventDefault();
+    this.props.handleUpdate({
+      ...this.props.post,
       timestamp: new Date().getTime(),
     })
   }
 
   render() {
-    const { author, body, category, title } = this.props.post;
+    const { author, body, category, id, title } = this.props.post;
     const { categories } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={id ? this.handleUpdate : this.handleSubmit}>
         <TextInput
           onChange={this.props.updateCurentPostTitle}
           placeholder="Awesome title"
@@ -72,7 +88,7 @@ class PostForm extends PureComponent {
         />
 
         <button className="btn btn-outline-primary">
-          Publish
+          {id ? 'Update' : 'Publish'}
         </button>
       </form>
     );

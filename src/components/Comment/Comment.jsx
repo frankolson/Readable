@@ -16,16 +16,6 @@ const propTypes = {
   }),
 };
 
-const defaultProps = {
-  comment: {
-    author: null,
-    body: null,
-    id: null,
-    timestamp: null,
-    voteScore: null,
-  },
-};
-
 class Comment extends PureComponent {
   render() {
     const { author, body, timestamp, voteScore } = this.props.comment;
@@ -57,6 +47,5 @@ class Comment extends PureComponent {
 }
 
 Comment.propTypes = propTypes;
-Comment.defaultProps = defaultProps;
 
 export default Comment;

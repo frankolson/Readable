@@ -31,6 +31,11 @@ class App extends PureComponent {
         <div className="container container-small">
           <Route exact path="/" component={HomeContainer} />
           <Route path="/posts/new" component={PostFormContainer} />
+          <Route path="/posts/edit/:postId" render={({ match }) => (
+            <div>
+              <PostFormContainer postId={match.params.postId} />
+            </div>
+          )} />
           <Route path="/posts/show/:postId" render={({ match }) => (
             <div>
               <PostContainer postId={match.params.postId} />
