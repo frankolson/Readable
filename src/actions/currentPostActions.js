@@ -21,7 +21,7 @@ export const postPost = (post) => {
       dispatch(clearCurrentPost())
     )
     .then(() =>
-      dispatch(routerActions.push(`/posts/${post.id}`))
+      dispatch(routerActions.push(`/posts/show/${post.id}`))
     );
 }
 

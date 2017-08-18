@@ -24,7 +24,7 @@ class Posts extends PureComponent {
         <ul>
           {sort.dateDescending(posts).map(post =>
             <li key={post.id}>
-              <Link to={`/posts/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
+              <Link to={`/posts/show/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
             </li>
           )}
         </ul>
