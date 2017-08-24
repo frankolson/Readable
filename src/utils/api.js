@@ -109,12 +109,12 @@ export const postCommentVote = (params) =>
     body: JSON.stringify(params)
   }).then(res => res.json())
 
-export const putComment = (commentId, params) =>
-  fetch(`${api}/comment/${commentId}`, {
+export const putComment = (comment) =>
+  fetch(`${api}/comments/${comment.id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(comment)
   }).then(res => res.json())

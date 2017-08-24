@@ -15,7 +15,7 @@ const initialState = {
 export default function reducer(state=initialState, action) {
   switch (action.type) {
     case actionTypes.ADD_CURRENT_COMMENT:
-      return action.post
+      return action.comment
     case actionTypes.CLEAR_CURRENT_COMMENT:
       return initialState
     case actionTypes.UPDATE_CURRENT_COMMENT_AUTHOR:

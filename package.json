@@ -11,6 +11,7 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "scroll-to-element": "^2.0.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {

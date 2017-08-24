@@ -14,11 +14,13 @@ const propTypes = {
     timestamp: PropTypes.number,
     voteScore: PropTypes.number,
   }),
+  deleteComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
 class Comment extends PureComponent {
   render() {
-    const { author, body, timestamp, voteScore } = this.props.comment;
+    const { author, body, id, timestamp, voteScore } = this.props.comment;
 
     return (
       <div className="card mb-3">
@@ -36,8 +38,21 @@ class Comment extends PureComponent {
             <span className="text-muted">{`${voteScore} points`}</span>
 
             <div className="float-right">
-              <a href="#" className="card-link text-secondary">Edit</a>
-              <a href="#" className="card-link text-secondary">Delete</a>
+              <button
+                className="btn btn-link text-secondary"
+                onClick={() => this.props.editComment(id)}
+                style={{ cursor: "pointer" }}
+              >
+                Edit
+              </button>
+
+              <button
+                className="btn btn-link text-secondary"
+                onClick={() => this.props.deleteComment(this.props.comment)}
+                style={{ cursor: "pointer" }}
+              >
+                Delete
+              </button>
             </div>
           </h6>
         </div>

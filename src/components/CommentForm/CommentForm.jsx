@@ -27,6 +27,7 @@ class CommentForm extends PureComponent {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   handleSubmit(event) {
@@ -43,7 +44,6 @@ class CommentForm extends PureComponent {
     event.preventDefault();
     this.props.handleUpdate({
       ...this.props.comment,
-      parentId: this.props.comment.parentId,
       timestamp: new Date().getTime(),
     })
   }

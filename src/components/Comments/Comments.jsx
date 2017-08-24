@@ -1,6 +1,7 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import scrollToElement from 'scroll-to-element';
 
 // Project Assets
 import Comment from '../Comment';
@@ -10,17 +11,35 @@ import './Comments.css';
 
 const propTypes = {
   comments: PropTypes.array.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
 }
 
 class Comments extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.editComment = this.editComment.bind(this);
+  }
+
+  editComment(commentId) {
+    this.props.editComment(commentId);
+    scrollToElement('.comments-section', {
+      offset: -100,
+      duration: 500,
+    });
+  }
+
   render() {
     const { comments } = this.props;
 
     const renderedComments = sort.dateDescending(comments).map(comment =>
       <Comment
-        key={comment.id}
         comment={comment}
+        deleteComment={this.props.deleteComment}
+        key={comment.id}
+        editComment={this.editComment}
       />
     );
 

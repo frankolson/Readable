@@ -20,6 +20,21 @@ export const postComment = (comment) => {
     });
 }
 
+export const deleteComment = (comment) => {
+  return dispatch => api.deleteComment(comment.id)
+    .then(() => {
+      dispatch(postCommentsActions.getPostComments(comment.parentId));
+    });
+}
+
+export const updateComment = (comment) => {
+  return dispatch => api.putComment(comment)
+    .then((comment) => {
+      dispatch(postCommentsActions.getPostComments(comment.parentId));
+      dispatch(clearCurrentComment());
+    });
+}
+
 export const clearCurrentComment = () => ({
   type: actionTypes.CLEAR_CURRENT_COMMENT
 })
