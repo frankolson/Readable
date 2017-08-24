@@ -18,7 +18,13 @@ const propTypes = {
 };
 
 class App extends PureComponent {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
+    this.loadEverything = this.loadEverything.bind(this);
+  }
+
+  loadEverything() {
     this.props.getCategories();
     this.props.getPosts();
   }
@@ -29,21 +35,28 @@ class App extends PureComponent {
         <Route path="/" component={Header} />
 
         <div className="container container-small">
-          <Route exact path="/" component={HomeContainer} />
+          <Route exact path="/" render={() => {
+            this.loadEverything();
+            return <HomeContainer />;
+          }} />
+
+          <Route path="/categories/:category" render={({ match }) =>
+            <CategoryContainer category={match.params.category} />
+          } />
+
           <Route path="/posts/new" component={PostFormContainer} />
+
           <Route path="/posts/edit/:postId" render={({ match }) => (
             <div>
               <PostFormContainer postId={match.params.postId} />
             </div>
           )} />
+
           <Route path="/posts/show/:postId" render={({ match }) => (
             <div>
               <PostContainer postId={match.params.postId} />
             </div>
           )} />
-          <Route path="/categories/:category" render={({ match }) =>
-            <CategoryContainer category={match.params.category} />
-          } />
         </div>
 
         <Route path="/posts/show/:postId" render={({ match }) => (
