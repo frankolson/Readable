@@ -6,6 +6,7 @@ import moment from 'moment';
 
 const propTypes = {
   clearCurrentPost: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string,
@@ -21,6 +22,12 @@ const propTypes = {
 }
 
 class Post extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.deletePost = this.deletePost.bind(this);
+  }
+
   componentDidMount() {
     this.props.getPost(this.props.postId);
     this.props.getPostComments(this.props.postId);
@@ -28,6 +35,10 @@ class Post extends PureComponent {
 
   componentWillUnmount() {
     this.props.clearCurrentPost();
+  }
+
+  deletePost() {
+    this.props.deletePost(this.props.post.id);
   }
 
   render() {
@@ -51,7 +62,13 @@ class Post extends PureComponent {
             <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">
               Edit
             </Link>
-            <a href="#" className="btn btn-link text-secondary">Delete</a>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={this.deletePost}
+              className="btn btn-link text-secondary"
+            >
+              Delete
+            </button>
           </div>
         </div>
       );

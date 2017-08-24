@@ -7,7 +7,7 @@ import Home from '../components/Home';
 
 const mapStateToProps = ({categories, posts}) => ({
   categories,
-  posts,
+  posts: posts.filter((post) => !post.deleted),
 })
 
 export default withRouter(connect(mapStateToProps, null)(Home));

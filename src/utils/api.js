@@ -30,7 +30,7 @@ export const deletePost = (postId) =>
       ...headers,
       'Content-Type': 'application/json'
     },
-  }).then(res => res.json())
+  })
 
 export const getPost = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
