@@ -7,6 +7,7 @@ import moment from 'moment';
 const propTypes = {
   clearCurrentPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
+  downVotePost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string,
@@ -19,6 +20,7 @@ const propTypes = {
     voteScore: PropTypes.number,
   }),
   postId: PropTypes.string.isRequired,
+  upVotePost: PropTypes.func.isRequired,
 }
 
 class Post extends PureComponent {
@@ -50,7 +52,7 @@ class Post extends PureComponent {
           <div className="post-info mb-3">
             <div className="post-author">{author}</div>
             <div className="post-time-score text-secondary">
-              {`${moment(timestamp).format('D MMM YYYY')} ~ ${voteScore} points`}
+              {`${moment(timestamp).format('D MMM YYYY')}`}
             </div>
           </div>
 
@@ -58,17 +60,41 @@ class Post extends PureComponent {
 
           <p className="post-body mb-5">{body}</p>
 
-          <div className="mb-2 d-flex justify-content-end">
-            <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">
-              Edit
-            </Link>
-            <button
-              style={{ cursor: "pointer" }}
-              onClick={this.deletePost}
-              className="btn btn-link text-secondary"
-            >
-              Delete
-            </button>
+          <div className="mb-2 d-flex justify-content-between">
+            <div>
+              <a
+                onClick={() => this.props.upVotePost(this.props.post)}
+                style={{cursor: "pointer"}}
+                className="btn btn-link text-secondary"
+              >
+                <span className="fa fa-caret-up"></span>
+              </a>
+
+              <span className="text-muted">
+                {`${voteScore} point${(voteScore !== 1) ? 's' : ''}`}
+              </span>
+
+              <a
+                onClick={() => this.props.downVotePost(this.props.post)}
+                style={{cursor: "pointer"}}
+                className="btn btn-link text-secondary"
+              >
+                <span className="fa fa-caret-down"></span>
+              </a>
+            </div>
+
+            <div>
+              <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">
+                Edit
+              </Link>
+              <button
+                style={{ cursor: "pointer" }}
+                onClick={this.deletePost}
+                className="btn btn-link text-secondary"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       );
