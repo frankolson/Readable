@@ -12,8 +12,10 @@ import './Comments.css';
 const propTypes = {
   comments: PropTypes.array.isRequired,
   deleteComment: PropTypes.func.isRequired,
+  downVoteComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
+  upVoteComment: PropTypes.func.isRequired,
 }
 
 class Comments extends PureComponent {
@@ -38,8 +40,10 @@ class Comments extends PureComponent {
       <Comment
         comment={comment}
         deleteComment={this.props.deleteComment}
-        key={comment.id}
+        downVoteComment={this.props.downVoteComment}
         editComment={this.editComment}
+        key={comment.id}
+        upVoteComment={this.props.upVoteComment}
       />
     );
 

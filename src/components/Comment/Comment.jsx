@@ -15,7 +15,9 @@ const propTypes = {
     voteScore: PropTypes.number,
   }),
   deleteComment: PropTypes.func.isRequired,
+  downVoteComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
+  upVoteComment: PropTypes.func.isRequired,
 };
 
 class Comment extends PureComponent {
@@ -35,7 +37,25 @@ class Comment extends PureComponent {
           <p className="card-text">{body}</p>
 
           <h6 className="mt-2">
-            <span className="text-muted">{`${voteScore} points`}</span>
+            <a
+              onClick={() => this.props.upVoteComment(this.props.comment)}
+              style={{cursor: "pointer"}}
+              className="btn btn-link text-secondary"
+            >
+              <span className="fa fa-caret-up"></span>
+            </a>
+
+            <span className="text-muted">
+              {`${voteScore} point${(voteScore !== 1) ? 's' : ''}`}
+            </span>
+
+            <a
+              onClick={() => this.props.downVoteComment(this.props.comment)}
+              style={{cursor: "pointer"}}
+              className="btn btn-link text-secondary"
+            >
+              <span className="fa fa-caret-down"></span>
+            </a>
 
             <div className="float-right">
               <button

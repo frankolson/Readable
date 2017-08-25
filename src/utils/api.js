@@ -54,14 +54,14 @@ export const postPost = (params) =>
     body: JSON.stringify(params)
   }).then(res => res.json())
 
-export const postPostVote = (postId, params) =>
+export const postPostVote = (postId, option) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify({ option })
   }).then(res => res.json())
 
 export const putPost = (params) =>
@@ -99,14 +99,14 @@ export const postComment = (params) =>
     body: JSON.stringify(params)
   }).then(res => res.json())
 
-export const postCommentVote = (params) =>
-  fetch(`${api}/comments/${params.id}`, {
+export const postCommentVote = (commentId, option) =>
+  fetch(`${api}/comments/${commentId}`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify({ option })
   }).then(res => res.json())
 
 export const putComment = (comment) =>
