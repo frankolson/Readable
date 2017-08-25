@@ -7,7 +7,7 @@ import Category from '../components/Category';
 
 const mapStateToProps = ({ posts }, { category }) => ({
   category: category,
-  posts: posts.filter(p => p.category === category)
+  posts: posts.filter(p => !p.deleted && p.category === category)
 })
 
 export default withRouter(connect(mapStateToProps, null)(Category));
