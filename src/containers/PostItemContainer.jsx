@@ -4,17 +4,17 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import PostItem from '../components/PostItem';
-import { getPostComments } from '../actions/postCommentsActions';
+import { getComments } from '../actions/commentsActions';
 import { downVotePost, upVotePost } from '../actions/currentPostActions';
 
-const mapStateToProps = ({ postComments, posts }, { post }) => ({
+const mapStateToProps = ({ comments, posts }, { post }) => ({
   post: posts[post.id],
-  postComments,
+  comments,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   downVotePost: data => dispatch(downVotePost(data)),
-  getPostComments: data => dispatch(getPostComments(data)),
+  getComments: data => dispatch(getComments(data)),
   upVotePost: data => dispatch(upVotePost(data)),
 })
 

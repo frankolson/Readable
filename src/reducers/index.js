@@ -7,7 +7,7 @@ import categories from './categoryReducer';
 import currentComment from './currentCommentReducer';
 import currentPost from './currentPostReducer';
 import posts from './postsReducer';
-import postComments from './postCommentsReducer';
+import comments from './commentsReducer';
 import sort from './sortReducer';
 
 export default combineReducers({
@@ -15,7 +15,7 @@ export default combineReducers({
   currentComment,
   currentPost,
   posts,
-  postComments,
+  comments,
   routing: routerReducer,
   sort,
 });

@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants/postCommentsConstants';
+import * as actionTypes from '../constants/commentsConstants';
 
 export default function reducer(state={}, action) {
   switch (action.type) {

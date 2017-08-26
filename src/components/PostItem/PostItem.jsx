@@ -32,6 +32,7 @@ class PostItem extends PureComponent {
             entity={post}
             upVote={upVotePost}
           />
+          <span className="m-2">|</span>
         </div>
       </div>
     );

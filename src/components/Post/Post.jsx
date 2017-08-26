@@ -35,7 +35,7 @@ class Post extends PureComponent {
 
   componentDidMount() {
     this.props.getPost(this.props.postId);
-    this.props.getPostComments(this.props.postId);
+    this.props.getComments(this.props.postId);
   }
 
   componentWillUnmount() {

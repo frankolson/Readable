@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/currentCommentConstants';
 import * as api from '../utils/api';
-import * as postCommentsActions from './postCommentsActions';
+import * as commentsActions from './commentsActions';
 
 export const clearCurrentComment = () => ({
   type: actionTypes.CLEAR_CURRENT_COMMENT
@@ -19,21 +19,21 @@ export const getCurrentComment = (commentId) => {
 export const deleteComment = (comment) => {
   return dispatch => api.deleteComment(comment.id)
     .then(() => {
-      dispatch(postCommentsActions.getPostComments(comment.parentId));
+      dispatch(commentsActions.getComments(comment.parentId));
     });
 }
 
 export const downVoteComment = (comment) => {
   return dispatch => api.postCommentVote(comment.id, "downVote")
   .then(res =>
-    dispatch(postCommentsActions.getPostComments(comment.parentId))
+    dispatch(commentsActions.getComments(comment.parentId))
   );
 }
 
 export const postComment = (comment) => {
   return dispatch => api.postComment(comment)
   .then((comment) => {
-    dispatch(postCommentsActions.getPostComments(comment.parentId));
+    dispatch(commentsActions.getComments(comment.parentId));
     dispatch(clearCurrentComment());
   });
 }
@@ -41,7 +41,7 @@ export const postComment = (comment) => {
 export const updateComment = (comment) => {
   return dispatch => api.putComment(comment)
     .then((comment) => {
-      dispatch(postCommentsActions.getPostComments(comment.parentId));
+      dispatch(commentsActions.getComments(comment.parentId));
       dispatch(clearCurrentComment());
     });
 }
@@ -59,6 +59,6 @@ export const updateCurentCommentBody = (body) => ({
 export const upVoteComment = (comment) => {
   return dispatch => api.postCommentVote(comment.id, "upVote")
   .then(res =>
-    dispatch(postCommentsActions.getPostComments(comment.parentId))
+    dispatch(commentsActions.getComments(comment.parentId))
   );
 }

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import Comments from '../components/Comments';
-import { toggleCommentDateSort } from '../actions/postCommentsActions';
+import { toggleCommentDateSort } from '../actions/commentsActions';
 import {
   deleteComment,
   downVoteComment,
@@ -12,9 +12,9 @@ import {
   upVoteComment,
 } from '../actions/currentCommentActions';
 
-const mapStateToProps = ({ postComments, currentPost, sort }, { postId }) => ({
-  comments: Object.keys(postComments)
-                  .map(comment => postComments[comment]),
+const mapStateToProps = ({ comments, currentPost, sort }, { postId }) => ({
+  comments: Object.keys(comments)
+                  .map(comment => comments[comment]),
   dateSort: sort.dateCommentSort,
   postId,
 })
