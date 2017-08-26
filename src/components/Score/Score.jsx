@@ -10,7 +10,7 @@ const propTypes = {
   upVote: PropTypes.func.isRequired,
 };
 
-class PostItem extends PureComponent {
+class Score extends PureComponent {
   render() {
     const { entity } = this.props;
 
@@ -19,7 +19,7 @@ class PostItem extends PureComponent {
         <a
           onClick={() => this.props.upVote(entity)}
           style={{cursor: "pointer"}}
-          className="btn btn-link text-secondary"
+          className="mr-2 btn-link text-secondary"
         >
           <span className="fa fa-caret-up"></span>
         </a>
@@ -31,7 +31,7 @@ class PostItem extends PureComponent {
         <a
           onClick={() => this.props.downVote(entity)}
           style={{cursor: "pointer"}}
-          className="btn btn-link text-secondary"
+          className="ml-2 btn-link text-secondary"
         >
           <span className="fa fa-caret-down"></span>
         </a>
@@ -40,6 +40,6 @@ class PostItem extends PureComponent {
   }
 }
 
-PostItem.propTypes = propTypes;
+Score.propTypes = propTypes;
 
-export default PostItem;
+export default Score;

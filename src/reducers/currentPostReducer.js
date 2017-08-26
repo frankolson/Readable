@@ -9,7 +9,7 @@ const initialState = {
   id: null,
   timestamp: null,
   title: '',
-  voteScore: null,
+  voteScore: 0,
 };
 
 export default function reducer(state=initialState, action) {

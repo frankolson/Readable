@@ -25,7 +25,8 @@ class PostItem extends PureComponent {
       <div className="mb-3">
         <Link to={`/posts/show/${post.id}`}>{post.title}</Link>
         <div className="text-secondary">
-          {`${post.author} | `}
+          {post.author}
+          <span className="m-2">|</span>
           <Score
             downVote={downVotePost}
             entity={post}
