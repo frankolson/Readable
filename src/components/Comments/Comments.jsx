@@ -64,7 +64,11 @@ class Comments extends PureComponent {
         <div className="container container-small">
           <CommentFormContainer postId={this.props.postId} />
 
-          <div className="d-flex  justify-content-end">
+          <div className="p-2 d-flex justify-content-between">
+            <span className="text-secondary">
+              {`${comments.length} comment${(comments.length !== 1) ? 's' : ''}`}
+            </span>
+
             <SortButton
               dateSort={dateSort}
               handleChange={toggleCommentDateSort}
