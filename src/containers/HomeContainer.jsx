@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import Home from '../components/Home';
 
 const mapStateToProps = ({categories, posts}) => ({
-  categories,
+  categories: Object.keys(categories).map(category => categories[category]),
   posts: posts.filter((post) => !post.deleted),
 })
 

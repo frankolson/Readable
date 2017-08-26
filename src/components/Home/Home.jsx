@@ -13,10 +13,10 @@ class Home extends PureComponent {
         <div>
           <b>Categories:</b>
           <ul>
-            {Object.keys(categories).map(id =>
-              <li key={id}>
-                <Link to={`/categories/${categories[id].name}`}>
-                  {categories[id].name}
+            {categories.map(category =>
+              <li key={category.path}>
+                <Link to={`/categories/${category.path}`}>
+                  {category.name}
                 </Link>
               </li>
             )}

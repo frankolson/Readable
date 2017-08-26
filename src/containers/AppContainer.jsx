@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import App from '../components/App';
-import { getCategories } from '../actions/categoriesActions';
+import { getCategories } from '../actions/categoryActions';
 import { getPosts } from '../actions/postsActions';
 
 const mapDispatchToProps = (dispatch) => ({
