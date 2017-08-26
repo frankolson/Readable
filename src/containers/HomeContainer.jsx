@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import Home from '../components/Home';
 import { getCategories } from '../actions/categoryActions';
 import { getPosts } from '../actions/postsActions';
+import { togglePostDateSort } from '../actions/postsActions';
 
 const mapStateToProps = ({categories, posts, sort}) => ({
   categories: Object.keys(categories).map(category => categories[category]),
@@ -17,7 +18,8 @@ const mapStateToProps = ({categories, posts, sort}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getCategories: () => dispatch(getCategories()),
-  getPosts: () => dispatch(getPosts())
+  getPosts: () => dispatch(getPosts()),
+  togglePostDateSort: () => dispatch(togglePostDateSort()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

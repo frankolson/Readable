@@ -15,6 +15,7 @@ const propTypes = {
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
+  togglePostDateSort: PropTypes.func.isRequired,
 };
 
 class Category extends PureComponent {
@@ -24,7 +25,10 @@ class Category extends PureComponent {
   }
 
   render() {
-    const { categories, categoryPath, dateSort, posts } = this.props;
+    const {
+      categories, categoryPath, dateSort,
+      posts, togglePostDateSort
+    } = this.props;
     const category = categories.find(c => c.path === categoryPath)
 
     if (!category) return null;
@@ -38,6 +42,7 @@ class Category extends PureComponent {
         <Posts
           dateSort={dateSort}
           posts={posts.filter(p => p.category === category.name)}
+          togglePostDateSort={togglePostDateSort}
         />
       </div>
     );

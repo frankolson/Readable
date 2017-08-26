@@ -15,6 +15,7 @@ const propTypes = {
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
+  togglePostDateSort: PropTypes.func.isRequired,
 };
 
 class Home extends PureComponent {
@@ -24,7 +25,7 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { categories, dateSort, posts } = this.props;
+    const { categories, dateSort, posts, togglePostDateSort } = this.props;
     return (
       <div>
         <div className="mb-4">
@@ -46,7 +47,11 @@ class Home extends PureComponent {
           </div>
         </div>
 
-        <Posts dateSort={dateSort} posts={posts} />
+        <Posts
+          dateSort={dateSort}
+          posts={posts}
+          togglePostDateSort={togglePostDateSort}
+        />
       </div>
     );
   }

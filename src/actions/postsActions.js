@@ -2,7 +2,8 @@
 import { routerActions } from 'react-router-redux';
 
 // Project Assets
-import * as actionTypes from '../constants/postsConstants';
+import * as postActionTypes from '../constants/postsConstants';
+import * as sortActionTypes from '../constants/sortConstants';
 import * as api from '../utils/api';
 
 export const deletePost = (postId) => {
@@ -16,7 +17,7 @@ export const getPosts = () => {
   return dispatch => api.getPosts()
     .then(posts => {
       dispatch({
-        type: actionTypes.ADD_POSTS,
+        type: postActionTypes.ADD_POSTS,
         posts: posts.reduce((accumulator, post) => ({
           ...accumulator,
           [post.id]: { ...post },
@@ -25,7 +26,13 @@ export const getPosts = () => {
     });
 }
 
+export const togglePostDateSort = () => {
+  return {
+    type: sortActionTypes.TOGGLE_POST_DATE_SORT,
+  }
+}
+
 export const updatePost = (post) => ({
-  type: actionTypes.UPDATE_POST,
+  type: postActionTypes.UPDATE_POST,
   post,
 })
