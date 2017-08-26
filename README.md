@@ -2,20 +2,26 @@
 
 ## Getting Started
 
-### Install
-
-To install all the dependencies for this site run the following command in your preferred terminal:
+### Grab start the backend server
 
 ```shell
+cd ~/
+git clone https://github.com/udacity/reactnd-project-readable-starter.git
+cd reactnd-project-readable-starter
 npm install
+node server.js
 ```
 
-### Deploy
+### Install and deploy
 
-Once the installation is done, you can run some commands inside the project folder:
+```shell
+cd ~/
+git clone https://github.com/frankolson/readable.git
+cd readable
+npm install
+npm start
+```
 
-`npm start` or `yarn start`
-
-This runs the app in development mode at the following address: [http://localhost:3003](http://localhost:3003).
+This runs the app in development mode at the following address: [http://localhost:3000](http://localhost:3000).
 
 The page will reload if you make edits and you will see the build errors and lint warnings in the console.
