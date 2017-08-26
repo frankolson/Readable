@@ -18,6 +18,7 @@ const propTypes = {
     timestamp: PropTypes.number,
     title: PropTypes.string.isRequired,
   }),
+  getCategories: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   updateCurentPostAuthor: PropTypes.func.isRequired,
   updateCurentPostBody: PropTypes.func.isRequired,
@@ -37,6 +38,7 @@ class PostForm extends PureComponent {
     if (this.props.post.id) {
       this.props.getPost(this.props.post.id);
     }
+    this.props.getCategories();
   }
 
   handleSubmit(event) {

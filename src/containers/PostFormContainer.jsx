@@ -5,15 +5,17 @@ import { withRouter } from 'react-router-dom'
 // Project Assets
 import PostForm from '../components/PostForm';
 import * as currentPostActions from '../actions/currentPostActions';
+import { getCategories } from '../actions/categoryActions';
 import { getCurrentPost } from '../actions/currentPostActions';
 
 const mapStateToProps = ({ categories, currentPost }, { postId }) => ({
-  categories,
+  categories: Object.keys(categories).map(category => categories[category]),
   post: currentPost,
   postId,
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  getCategories: () => dispatch(getCategories()),
   getPost: data => dispatch(getCurrentPost(data)),
   handleSubmit: data =>dispatch(currentPostActions.postPost(data)),
   handleUpdate: data =>dispatch(currentPostActions.putPost(data)),
