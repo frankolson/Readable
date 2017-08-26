@@ -7,8 +7,9 @@ import Home from '../components/Home';
 import { getCategories } from '../actions/categoryActions';
 import { getPosts } from '../actions/postsActions';
 
-const mapStateToProps = ({categories, posts}) => ({
+const mapStateToProps = ({categories, posts, sort}) => ({
   categories: Object.keys(categories).map(category => categories[category]),
+  dateSort: sort.datePostSort,
   posts: Object.keys(posts)
                .map(post => posts[post])
                .filter(post => !post.deleted),

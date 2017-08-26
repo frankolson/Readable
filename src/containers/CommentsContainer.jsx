@@ -14,7 +14,8 @@ import {
 
 const mapStateToProps = ({ comments, currentPost, sort }, { postId }) => ({
   comments: Object.keys(comments)
-                  .map(comment => comments[comment]),
+                  .map(comment => comments[comment])
+                  .filter(comment => comment.parentId === postId),
   dateSort: sort.dateCommentSort,
   postId,
 })

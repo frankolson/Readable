@@ -7,7 +7,9 @@ import PropTypes from 'prop-types';
 import Score from '../Score';
 
 const propTypes = {
+  comments: PropTypes.array.isRequired,
   downVotePost: PropTypes.func.isRequired,
+  getComments: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
@@ -18,8 +20,12 @@ const propTypes = {
 };
 
 class PostItem extends PureComponent {
+  componentDidMount() {
+    this.props.getComments(this.props.post.id);
+  }
+
   render() {
-    const { downVotePost, post, upVotePost } = this.props;
+    const { comments, downVotePost, post, upVotePost } = this.props;
 
     return(
       <div className="mb-3">
@@ -33,6 +39,7 @@ class PostItem extends PureComponent {
             upVote={upVotePost}
           />
           <span className="m-2">|</span>
+          {`${comments.length} comment${(comments.length !== 1) ? 's' : ''}`}
         </div>
       </div>
     );

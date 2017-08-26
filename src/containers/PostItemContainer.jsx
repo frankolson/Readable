@@ -8,8 +8,10 @@ import { getComments } from '../actions/commentsActions';
 import { downVotePost, upVotePost } from '../actions/currentPostActions';
 
 const mapStateToProps = ({ comments, posts }, { post }) => ({
+  comments: Object.keys(comments)
+                  .map(comment => comments[comment])
+                  .filter(comment => comment.parentId === post.id),
   post: posts[post.id],
-  comments,
 })
 
 const mapDispatchToProps = (dispatch) => ({

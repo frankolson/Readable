@@ -47,7 +47,6 @@ class Comments extends PureComponent {
 
   render() {
     const { comments, dateSort, toggleCommentDateSort } = this.props;
-
     const renderedComments = this.sortOrder(comments).map(comment =>
       <Comment
         comment={comment}

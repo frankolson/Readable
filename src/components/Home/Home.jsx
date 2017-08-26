@@ -11,6 +11,7 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
   })).isRequired,
+  dateSort: PropTypes.bool.isRequired,
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
@@ -23,23 +24,29 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { categories, posts } = this.props;
+    const { categories, dateSort, posts } = this.props;
     return (
       <div>
         <div className="mb-4">
-          <b>Categories:</b>
-          <div className="row">
-            {categories.map(category =>
-              <div className="col-sm-2" key={category.path}>
-                <Link to={`/categories/${category.path}`}>
-                  {category.name}
-                </Link>
-              </div>
-            )}
+          <div className="text-center">
+            <h1 className="mb-4">Categories:</h1>
+
+            <div className="row d-flex justify-content-around">
+              {categories.map(category =>
+                <div className="col-sm-4 mb-3" key={category.path}>
+                  <Link
+                    className="btn btn-outline-primary btn-lg"
+                    to={`/categories/${category.path}`}
+                  >
+                    {category.name}
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        <Posts posts={posts} />
+        <Posts dateSort={dateSort} posts={posts} />
       </div>
     );
   }

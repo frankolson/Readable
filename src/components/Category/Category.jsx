@@ -11,6 +11,7 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
   })).isRequired,
+  dateSort: PropTypes.bool.isRequired,
   getCategories: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
@@ -23,18 +24,21 @@ class Category extends PureComponent {
   }
 
   render() {
-    const { categories, categoryPath, posts } = this.props;
+    const { categories, categoryPath, dateSort, posts } = this.props;
     const category = categories.find(c => c.path === categoryPath)
 
     if (!category) return null;
 
     return (
       <div>
-        <div>
+        <div className="text-center">
           <h1>{category.name}</h1>
         </div>
 
-        <Posts posts={posts.filter(p => p.category === category.name)} />
+        <Posts
+          dateSort={dateSort}
+          posts={posts.filter(p => p.category === category.name)}
+        />
       </div>
     );
   }
