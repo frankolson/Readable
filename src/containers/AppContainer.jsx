@@ -4,12 +4,5 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import App from '../components/App';
-import { getCategories } from '../actions/categoryActions';
-import { getPosts } from '../actions/postsActions';
 
-const mapDispatchToProps = (dispatch) => ({
-  getCategories: () => dispatch(getCategories()),
-  getPosts: () => dispatch(getPosts())
-});
-
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(null, null)(App));

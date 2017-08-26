@@ -6,20 +6,35 @@ import PropTypes from 'prop-types';
 import Posts from '../Posts';
 
 const propTypes = {
-  category: PropTypes.string.isRequired,
+  categoryPath: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+  })).isRequired,
+  getCategories: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
 };
 
 class Category extends PureComponent {
+  componentDidMount() {
+    this.props.getCategories();
+    this.props.getPosts();
+  }
+
   render() {
-    const { category, posts } = this.props;
+    const { categories, categoryPath, posts } = this.props;
+    const category = categories.find(c => c.path === categoryPath)
+
+    if (!category) return null;
+
     return (
       <div>
         <div>
-          <h1>{category}</h1>
+          <h1>{category.name}</h1>
         </div>
 
-        <Posts posts={posts} />
+        <Posts posts={posts.filter(p => p.category === category.name)} />
       </div>
     );
   }

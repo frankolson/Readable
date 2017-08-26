@@ -4,10 +4,20 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import Category from '../components/Category';
+import { getCategories } from '../actions/categoryActions';
+import { getPosts } from '../actions/postsActions';
 
-const mapStateToProps = ({ posts }, { category }) => ({
-  category: category,
-  posts: posts.filter(p => !p.deleted && p.category === category)
+const mapStateToProps = ({ categories, posts }, { categoryPath }) => ({
+  categoryPath,
+  categories: Object.keys(categories).map(category => categories[category]),
+  posts: Object.keys(posts)
+               .map(post => posts[post])
+               .filter(post => !post.deleted)
 })
 
-export default withRouter(connect(mapStateToProps, null)(Category));
+const mapDispatchToProps = (dispatch) => ({
+  getCategories: () => dispatch(getCategories()),
+  getPosts: () => dispatch(getPosts())
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Category));
