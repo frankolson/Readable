@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 
 // Project Assets
-import categories from './categoriesReducer';
+import categories from './categoryReducer';
 import currentComment from './currentCommentReducer';
 import currentPost from './currentPostReducer';
 import posts from './postsReducer';
