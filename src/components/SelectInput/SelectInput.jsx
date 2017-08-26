@@ -17,7 +17,7 @@ const defaultProps = {
   value: '',
 };
 
-class TextInput extends PureComponent {
+class SelectInput extends PureComponent {
   render() {
     const { onChange, options, placeholder, value } = this.props;
 
@@ -40,7 +40,7 @@ class TextInput extends PureComponent {
   }
 }
 
-TextInput.propTypes = propTypes;
-TextInput.defaultProps = defaultProps;
+SelectInput.propTypes = propTypes;
+SelectInput.defaultProps = defaultProps;
 
-export default TextInput;
+export default SelectInput;

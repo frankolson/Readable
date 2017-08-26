@@ -5,6 +5,7 @@ import scrollToElement from 'scroll-to-element';
 
 // Project Assets
 import Comment from '../Comment';
+import SortButton from '../SortButton';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 import * as sort from '../../utils/sort';
 import './Comments.css';
@@ -15,6 +16,8 @@ const propTypes = {
   downVoteComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
+  dateSort: PropTypes.bool.isRequired,
+  toggleCommentDateSort: PropTypes.func.isRequired,
   upVoteComment: PropTypes.func.isRequired,
 }
 
@@ -23,6 +26,7 @@ class Comments extends PureComponent {
     super(props);
 
     this.editComment = this.editComment.bind(this);
+    this.sortOrder = this.sortOrder.bind(this);
   }
 
   editComment(commentId) {
@@ -33,10 +37,18 @@ class Comments extends PureComponent {
     });
   }
 
-  render() {
-    const { comments } = this.props;
+  sortOrder(comments) {
+    if (this.props.dateSort) {
+      return sort.dateDescending(comments)
+    } else {
+      return sort.scoreDescending(comments)
+    }
+  }
 
-    const renderedComments = sort.dateDescending(comments).map(comment =>
+  render() {
+    const { comments, dateSort, toggleCommentDateSort } = this.props;
+
+    const renderedComments = this.sortOrder(comments).map(comment =>
       <Comment
         comment={comment}
         deleteComment={this.props.deleteComment}
@@ -52,6 +64,13 @@ class Comments extends PureComponent {
 
         <div className="container container-small">
           <CommentFormContainer postId={this.props.postId} />
+
+          <div className="d-flex  justify-content-end">
+            <SortButton
+              dateSort={dateSort}
+              handleChange={toggleCommentDateSort}
+            />
+          </div>
 
           {(comments.length > 0)
             ? renderedComments
