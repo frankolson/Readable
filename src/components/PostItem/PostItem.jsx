@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // Project Assets
 import Score from '../Score';
@@ -13,6 +14,7 @@ const propTypes = {
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     voteScore: PropTypes.number.isRequired,
   }).isRequired,
@@ -31,13 +33,13 @@ class PostItem extends PureComponent {
       <div className="mb-3">
         <Link to={`/posts/show/${post.id}`}>{post.title}</Link>
         <div className="text-secondary">
-          {post.author}
-          <span className="m-2">|</span>
           <Score
             downVote={downVotePost}
             entity={post}
             upVote={upVotePost}
           />
+          <span className="m-2">|</span>
+          {`by ${post.author} ${moment(post.timestamp).fromNow()}`}
           <span className="m-2">|</span>
           {`${comments.length} comment${(comments.length !== 1) ? 's' : ''}`}
         </div>
