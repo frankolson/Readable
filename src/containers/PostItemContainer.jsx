@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import PostItem from '../components/PostItem';
 import { getComments } from '../actions/commentsActions';
 import { downVotePost, upVotePost } from '../actions/currentPostActions';
+import { deletePost } from '../actions/postsActions';
 
 const mapStateToProps = ({ comments, posts }, { post }) => ({
   comments: Object.keys(comments)
@@ -15,6 +16,7 @@ const mapStateToProps = ({ comments, posts }, { post }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  deletePost: data => dispatch(deletePost(data)),
   downVotePost: data => dispatch(downVotePost(data)),
   getComments: data => dispatch(getComments(data)),
   upVotePost: data => dispatch(upVotePost(data)),

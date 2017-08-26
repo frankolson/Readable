@@ -1,6 +1,7 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // Project Assets
 import CategoryContainer from '../../containers/CategoryContainer';
@@ -10,6 +11,10 @@ import HomeContainer from '../../containers/HomeContainer';
 import PostContainer from '../../containers/PostContainer';
 import PostFormContainer from '../../containers/PostFormContainer';
 import './App.css';
+
+const propTypes = {
+  getCurrentPost: PropTypes.func.isRequired,
+};
 
 class App extends PureComponent {
   render() {
@@ -28,11 +33,10 @@ class App extends PureComponent {
 
           <Route path="/posts/new" component={PostFormContainer} />
 
-          <Route path="/posts/edit/:postId" render={({ match }) => (
-            <div>
-              <PostFormContainer postId={match.params.postId} />
-            </div>
-          )} />
+          <Route path="/posts/edit/:postId" render={({ match }) => {
+              this.props.getCurrentPost(match.params.postId);
+              return <PostFormContainer postId={match.params.postId} />
+          }} />
 
           <Route path="/posts/show/:postId" render={({ match }) => (
             <div>
@@ -50,5 +54,7 @@ class App extends PureComponent {
     );
   }
 }
+
+App.propTypes = propTypes;
 
 export default App;
