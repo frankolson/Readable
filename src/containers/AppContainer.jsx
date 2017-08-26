@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import App from '../components/App';
-import { getCurrentPost } from '../actions/currentPostActions';
+import { clearCurrentPost, getCurrentPost } from '../actions/currentPostActions';
 
 const mapDispatchToProps = (dispatch) => ({
+  clearCurrentPost: data => dispatch(clearCurrentPost(data)),
   getCurrentPost: data => dispatch(getCurrentPost(data)),
 });
 

@@ -1,6 +1,6 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
@@ -8,11 +8,13 @@ import CategoryContainer from '../../containers/CategoryContainer';
 import CommentsContainer from '../../containers/CommentsContainer';
 import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
+import NotFoundPage from '../NotFoundPage';
 import PostContainer from '../../containers/PostContainer';
 import PostFormContainer from '../../containers/PostFormContainer';
 import './App.css';
 
 const propTypes = {
+  clearCurrentPost: PropTypes.func.isRequired,
   getCurrentPost: PropTypes.func.isRequired,
 };
 
@@ -22,34 +24,48 @@ class App extends PureComponent {
       <div>
         <Route path="/" component={Header} />
 
-        <div className="container container-small">
-          <Route exact path="/" render={() => {
-            return <HomeContainer />;
-          }} />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <div className="container container-small">
+              <HomeContainer />
+            </div>
+          )} />
 
-          <Route path="/categories/:category" render={({ match }) => {
-            return <CategoryContainer categoryPath={match.params.category} />;
-          }} />
+          <Route path="/categories/:category" render={({ match }) => (
+            <div className="container container-small">
+              <CategoryContainer categoryPath={match.params.category} />
+            </div>
+          )} />
 
-          <Route path="/posts/new" component={PostFormContainer} />
+          <Route path="/posts/new" render={() => {
+            this.props.clearCurrentPost();
+            return (
+              <div className="container container-small">
+                <PostFormContainer />
+              </div>
+            );
+          }} />
 
           <Route path="/posts/edit/:postId" render={({ match }) => {
               this.props.getCurrentPost(match.params.postId);
-              return <PostFormContainer postId={match.params.postId} />
+              return (
+                <div className="container container-small">
+                  <PostFormContainer postId={match.params.postId} />
+                </div>
+              );
           }} />
 
           <Route path="/posts/show/:postId" render={({ match }) => (
             <div>
-              <PostContainer postId={match.params.postId} />
+              <div className="container container-small">
+                <PostContainer postId={match.params.postId} />
+              </div>
+              <CommentsContainer postId={match.params.postId} />
             </div>
           )} />
-        </div>
 
-        <Route path="/posts/show/:postId" render={({ match }) => (
-          <div>
-            <CommentsContainer postId={match.params.postId} />
-          </div>
-        )} />
+          <Route component={NotFoundPage} />
+        </Switch>
       </div>
     );
   }
