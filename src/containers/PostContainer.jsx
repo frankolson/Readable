@@ -9,7 +9,7 @@ import { getPostComments } from '../actions/postCommentsActions';
 import { deletePost } from '../actions/postsActions';
 import { downVotePost, upVotePost } from '../actions/currentPostActions';
 
-const mapStateToProps = ({ postComments, currentPost }, { postId }) => ({
+const mapStateToProps = ({ currentPost }, { postId }) => ({
   post: currentPost,
   postId,
 })

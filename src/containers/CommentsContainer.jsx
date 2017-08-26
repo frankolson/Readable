@@ -12,7 +12,8 @@ import {
 } from '../actions/currentCommentActions';
 
 const mapStateToProps = ({ postComments, currentPost }, { postId }) => ({
-  comments: postComments,
+  comments: Object.keys(postComments)
+                  .map(comment => postComments[comment]),
   postId,
 })
 

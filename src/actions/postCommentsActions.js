@@ -6,7 +6,10 @@ export const getPostComments = (postId) => {
     .then(comments => {
       dispatch({
         type: actionTypes.ADD_POST_COMMENTS,
-        comments,
+        comments: comments.reduce((accumulator, comment) => ({
+          ...accumulator,
+          [comment.id]: { ...comment },
+        }), {}),
       });
     });
 }
