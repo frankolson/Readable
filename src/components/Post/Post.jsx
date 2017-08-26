@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+// Project Assets
+import Score from '../Score';
+
 const propTypes = {
   clearCurrentPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
@@ -45,7 +48,7 @@ class Post extends PureComponent {
 
   render() {
     if (this.props.post) {
-      const { author, body, id, timestamp, title, voteScore } = this.props.post;
+      const { author, body, id, timestamp, title } = this.props.post;
 
       return (
         <div>
@@ -61,27 +64,11 @@ class Post extends PureComponent {
           <p className="post-body mb-5">{body}</p>
 
           <div className="mb-2 d-flex justify-content-between">
-            <div>
-              <a
-                onClick={() => this.props.upVotePost(this.props.post)}
-                style={{cursor: "pointer"}}
-                className="btn btn-link text-secondary"
-              >
-                <span className="fa fa-caret-up"></span>
-              </a>
-
-              <span className="text-muted">
-                {`${voteScore} point${(voteScore !== 1) ? 's' : ''}`}
-              </span>
-
-              <a
-                onClick={() => this.props.downVotePost(this.props.post)}
-                style={{cursor: "pointer"}}
-                className="btn btn-link text-secondary"
-              >
-                <span className="fa fa-caret-down"></span>
-              </a>
-            </div>
+            <Score
+              downVote={this.props.downVotePost}
+              entity={this.props.post}
+              upVote={this.props.upVotePost}
+            />
 
             <div>
               <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">

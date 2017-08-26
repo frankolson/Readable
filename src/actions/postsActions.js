@@ -24,3 +24,8 @@ export const getPosts = () => {
       });
     });
 }
+
+export const updatePost = (post) => ({
+  type: actionTypes.UPDATE_POST,
+  post,
+})

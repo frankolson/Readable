@@ -1,17 +1,13 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Project Assets
 import * as sort from '../../utils/sort';
+import PostItemContainer from '../../containers/PostItemContainer';
 
 const propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  })),
+  posts: PropTypes.array.isRequired,
 };
 
 class Posts extends PureComponent {
@@ -21,13 +17,9 @@ class Posts extends PureComponent {
     return(
       <div>
         <b>Posts:</b>
-        <ul>
-          {sort.dateDescending(posts).map(post =>
-            <li key={post.id}>
-              <Link to={`/posts/show/${post.id}`}>{post.title}</Link> ~ <i>{post.author}</i>
-            </li>
-          )}
-        </ul>
+        {sort.dateDescending(posts).map(post =>
+          <PostItemContainer key={post.id} post={post} />
+        )}
       </div>
     );
   }

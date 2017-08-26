@@ -26,17 +26,17 @@ class Home extends PureComponent {
     const { categories, posts } = this.props;
     return (
       <div>
-        <div>
+        <div className="mb-4">
           <b>Categories:</b>
-          <ul>
+          <div className="row">
             {categories.map(category =>
-              <li key={category.path}>
+              <div className="col-sm-2" key={category.path}>
                 <Link to={`/categories/${category.path}`}>
                   {category.name}
                 </Link>
-              </li>
+              </div>
             )}
-          </ul>
+          </div>
         </div>
 
         <Posts posts={posts} />

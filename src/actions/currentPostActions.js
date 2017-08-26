@@ -4,6 +4,7 @@ import { routerActions } from 'react-router-redux';
 // Project Assets
 import * as actionTypes from '../constants/currentPostConstants';
 import * as api from '../utils/api';
+import { updatePost } from './postsActions';
 
 export const clearCurrentPost = () => ({
   type: actionTypes.CLEAR_CURRENT_POST
@@ -11,9 +12,10 @@ export const clearCurrentPost = () => ({
 
 export const downVotePost = (post) => {
   return dispatch => api.postPostVote(post.id, "downVote")
-  .then(res =>
-    dispatch(getCurrentPost(post.id))
-  );
+  .then(res => {
+    dispatch(getCurrentPost(post.id));
+    dispatch(updatePost(res));
+  });
 }
 
 export const getCurrentPost = (postId) => {
@@ -69,7 +71,8 @@ export const updateCurentPostTitle = (title) => ({
 
 export const upVotePost = (post) => {
   return dispatch => api.postPostVote(post.id, "upVote")
-  .then(res =>
-    dispatch(getCurrentPost(post.id))
-  );
+  .then(res =>{
+    dispatch(getCurrentPost(post.id));
+    dispatch(updatePost(res));
+  });
 }
