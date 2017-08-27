@@ -8,7 +8,6 @@ import moment from 'moment';
 import Score from '../Score';
 
 const propTypes = {
-  clearCurrentPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   downVotePost: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
@@ -36,10 +35,6 @@ class Post extends PureComponent {
   componentDidMount() {
     this.props.getPost(this.props.postId);
     this.props.getComments(this.props.postId);
-  }
-
-  componentWillUnmount() {
-    this.props.clearCurrentPost();
   }
 
   deletePost() {

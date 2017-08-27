@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 // Project Assets
 import Post from '../components/Post';
-import { getCurrentPost, clearCurrentPost } from '../actions/currentPostActions';
+import { getCurrentPost } from '../actions/currentPostActions';
 import { getComments } from '../actions/commentsActions';
 import { deletePost } from '../actions/postsActions';
 import { downVotePost, upVotePost } from '../actions/currentPostActions';
@@ -15,7 +15,6 @@ const mapStateToProps = ({ currentPost }, { postId }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  clearCurrentPost: data => dispatch(clearCurrentPost(data)),
   deletePost: data => dispatch(deletePost(data)),
   downVotePost: data => dispatch(downVotePost(data)),
   getPost: data => dispatch(getCurrentPost(data)),

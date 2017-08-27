@@ -10,6 +10,7 @@ import SelectInput from '../SelectInput';
 
 const propTypes = {
   categories: PropTypes.array.isRequired,
+  clearPost: PropTypes.func.isRequired,
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
@@ -20,11 +21,16 @@ const propTypes = {
   }),
   getCategories: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
+  postId: PropTypes.string,
   updateCurentPostAuthor: PropTypes.func.isRequired,
   updateCurentPostBody: PropTypes.func.isRequired,
   updateCurentPostCategory: PropTypes.func.isRequired,
   updateCurentPostTitle: PropTypes.func.isRequired,
 }
+
+const defaultProps = {
+  postId: null,
+};
 
 class PostForm extends PureComponent {
   constructor(props) {
@@ -35,10 +41,21 @@ class PostForm extends PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.post.id) {
-      this.props.getPost(this.props.post.id);
+    if (this.props.postId) {
+      this.props.getPost(this.props.postId);
+    } else {
+      this.props.clearPost();
     }
+
     this.props.getCategories();
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.postId) {
+      this.props.getPost(props.postId);
+    } else {
+      this.props.clearPost();
+    }
   }
 
   handleSubmit(event) {
@@ -98,5 +115,6 @@ class PostForm extends PureComponent {
 }
 
 PostForm.propTypes = propTypes;
+PostForm.defaultProps = defaultProps;
 
 export default PostForm;

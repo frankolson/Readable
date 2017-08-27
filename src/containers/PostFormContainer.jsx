@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import PostForm from '../components/PostForm';
 import * as currentPostActions from '../actions/currentPostActions';
 import { getCategories } from '../actions/categoryActions';
-import { getCurrentPost } from '../actions/currentPostActions';
+import { clearCurrentPost, getCurrentPost } from '../actions/currentPostActions';
 
 const mapStateToProps = ({ categories, currentPost }, { postId }) => ({
   categories: Object.keys(categories).map(category => categories[category]),
@@ -15,6 +15,7 @@ const mapStateToProps = ({ categories, currentPost }, { postId }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  clearPost: data => dispatch(clearCurrentPost(data)),
   getCategories: () => dispatch(getCategories()),
   getPost: data => dispatch(getCurrentPost(data)),
   handleSubmit: data =>dispatch(currentPostActions.postPost(data)),

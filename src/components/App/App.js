@@ -1,7 +1,6 @@
 // Vendor Assets
 import React, { PureComponent } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Project Assets
 import CategoryContainer from '../../containers/CategoryContainer';
@@ -12,11 +11,6 @@ import NotFound from '../NotFound';
 import PostContainer from '../../containers/PostContainer';
 import PostFormContainer from '../../containers/PostFormContainer';
 import './App.css';
-
-const propTypes = {
-  clearCurrentPost: PropTypes.func.isRequired,
-  getCurrentPost: PropTypes.func.isRequired,
-};
 
 class App extends PureComponent {
   render() {
@@ -37,23 +31,17 @@ class App extends PureComponent {
             </div>
           )} />
 
-          <Route path="/posts/new" render={() => {
-            this.props.clearCurrentPost();
-            return (
-              <div className="container container-small">
-                <PostFormContainer />
-              </div>
-            );
-          }} />
+          <Route path="/posts/new" render={() => (
+            <div className="container container-small">
+              <PostFormContainer />
+            </div>
+          )} />
 
-          <Route path="/:category/:postId/edit" render={({ match }) => {
-              this.props.getCurrentPost(match.params.postId);
-              return (
-                <div className="container container-small">
-                  <PostFormContainer postId={match.params.postId} />
-                </div>
-              );
-          }} />
+          <Route path="/:category/:postId/edit" render={({ match }) => (
+            <div className="container container-small">
+              <PostFormContainer postId={match.params.postId} />
+            </div>
+          )} />
 
           <Route path="/:category/:postId" render={({ match }) => (
             <div>
@@ -70,7 +58,5 @@ class App extends PureComponent {
     );
   }
 }
-
-App.propTypes = propTypes;
 
 export default App;
