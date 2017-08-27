@@ -34,7 +34,7 @@ export const postPost = (post) => {
       dispatch(clearCurrentPost())
     )
     .then(() =>
-      dispatch(routerActions.push(`/posts/show/${post.id}`))
+      dispatch(routerActions.push(`/${post.category}/${post.id}`))
     );
 }
 
@@ -45,7 +45,7 @@ export const putPost = (post) => {
       dispatch(clearCurrentPost())
     )
     .then(() =>
-      dispatch(routerActions.push(`/posts/show/${post.id}`))
+      dispatch(routerActions.push(`/${post.category}/${post.id}`))
     );
 }
 

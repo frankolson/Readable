@@ -46,7 +46,7 @@ class App extends PureComponent {
             );
           }} />
 
-          <Route path="/posts/edit/:postId" render={({ match }) => {
+          <Route path="/:category/:postId/edit" render={({ match }) => {
               this.props.getCurrentPost(match.params.postId);
               return (
                 <div className="container container-small">
@@ -55,7 +55,7 @@ class App extends PureComponent {
               );
           }} />
 
-          <Route path="/posts/show/:postId" render={({ match }) => (
+          <Route path="/:category/:postId" render={({ match }) => (
             <div>
               <div className="container container-small">
                 <PostContainer postId={match.params.postId} />

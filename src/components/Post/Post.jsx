@@ -48,7 +48,7 @@ class Post extends PureComponent {
 
   render() {
     if (this.props.post) {
-      const { author, body, id, timestamp, title } = this.props.post;
+      const { author, body, category, id, timestamp, title } = this.props.post;
 
       return (
         <div>
@@ -71,7 +71,7 @@ class Post extends PureComponent {
             />
 
             <div>
-              <Link to={`/posts/edit/${id}`} className="btn btn-link text-secondary">
+              <Link to={`/${category}/${id}/edit`} className="btn btn-link text-secondary">
                 Edit
               </Link>
               <button

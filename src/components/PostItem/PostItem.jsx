@@ -32,7 +32,7 @@ class PostItem extends PureComponent {
 
     return(
       <div className="mb-3">
-        <Link to={`/posts/show/${post.id}`}>{post.title}</Link>
+        <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
 
         <div className="text-secondary">
           <Score
@@ -51,7 +51,7 @@ class PostItem extends PureComponent {
 
           <span className="m-2">|</span>
 
-          <Link to={`/posts/edit/${post.id}`} className="btn-link text-secondary">
+          <Link to={`/${post.category}/${post.id}/edit`} className="btn-link text-secondary">
             Edit
           </Link>
 
