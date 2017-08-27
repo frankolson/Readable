@@ -1,16 +1,17 @@
-import * as actionTypes from '../constants/currentCommentConstants';
+import * as currentCommentActionTypes from '../constants/currentCommentConstants';
+import * as commentsActionTypes from '../constants/commentsConstants';
 import * as api from '../utils/api';
 import * as commentsActions from './commentsActions';
 
 export const clearCurrentComment = () => ({
-  type: actionTypes.CLEAR_CURRENT_COMMENT
+  type: currentCommentActionTypes.CLEAR_CURRENT_COMMENT
 })
 
 export const getCurrentComment = (commentId) => {
   return dispatch => api.getComment(commentId)
     .then(comment => {
       dispatch({
-        type: actionTypes.ADD_CURRENT_COMMENT,
+        type: currentCommentActionTypes.ADD_CURRENT_COMMENT,
         comment,
       });
     });
@@ -18,7 +19,11 @@ export const getCurrentComment = (commentId) => {
 
 export const deleteComment = (comment) => {
   return dispatch => api.deleteComment(comment.id)
-    .then(() => {
+    .then(comment => {
+      dispatch({
+        type: commentsActionTypes.UPDATE_COMMENT,
+        comment
+      })
       dispatch(commentsActions.getComments(comment.parentId));
     });
 }
@@ -47,12 +52,12 @@ export const updateComment = (comment) => {
 }
 
 export const updateCurentCommentAuthor = (author) => ({
-  type: actionTypes.UPDATE_CURRENT_COMMENT_AUTHOR,
+  type: currentCommentActionTypes.UPDATE_CURRENT_COMMENT_AUTHOR,
   author,
 })
 
 export const updateCurentCommentBody = (body) => ({
-  type: actionTypes.UPDATE_CURRENT_COMMENT_BODY,
+  type: currentCommentActionTypes.UPDATE_CURRENT_COMMENT_BODY,
   body,
 })
 

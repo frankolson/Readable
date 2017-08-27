@@ -1,1 +1,2 @@
 export const ADD_POST_COMMENTS = 'ADD_POST_COMMENTS';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
