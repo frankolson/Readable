@@ -8,7 +8,7 @@ import CategoryContainer from '../../containers/CategoryContainer';
 import CommentsContainer from '../../containers/CommentsContainer';
 import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
-import NotFoundPage from '../NotFoundPage';
+import NotFound from '../NotFound';
 import PostContainer from '../../containers/PostContainer';
 import PostFormContainer from '../../containers/PostFormContainer';
 import './App.css';
@@ -64,7 +64,7 @@ class App extends PureComponent {
             </div>
           )} />
 
-          <Route component={NotFoundPage} />
+          <Route render={() => <NotFound type="page" />} />
         </Switch>
       </div>
     );
