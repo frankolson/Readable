@@ -4,7 +4,7 @@ import * as actionTypes from '../constants/currentPostConstants';
 const initialState = {
   author: '',
   body: '',
-  category: '',
+  category: 'react',
   deleted: false,
   id: null,
   timestamp: null,
