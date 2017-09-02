@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 
 // Project Assets
 import CategoryContainer from '../../containers/CategoryContainer';
-import CommentsContainer from '../../containers/CommentsContainer';
 import Header from '../Header';
 import HomeContainer from '../../containers/HomeContainer';
 import NotFound from '../NotFound';
@@ -44,12 +43,7 @@ class App extends PureComponent {
           )} />
 
           <Route path="/:category/:postId" render={({ match }) => (
-            <div>
-              <div className="container container-small">
-                <PostContainer postId={match.params.postId} />
-              </div>
-              <CommentsContainer postId={match.params.postId} />
-            </div>
+            <PostContainer postId={match.params.postId} />
           )} />
 
           <Route render={() => <NotFound type="page" />} />
