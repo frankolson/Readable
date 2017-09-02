@@ -21,6 +21,7 @@ const propTypes = {
   }),
   getCategories: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
+  isNew: PropTypes.bool.isRequired,
   postId: PropTypes.string,
   updateCurentPostAuthor: PropTypes.func.isRequired,
   updateCurentPostBody: PropTypes.func.isRequired,
@@ -43,7 +44,7 @@ class PostForm extends PureComponent {
   componentDidMount() {
     if (this.props.postId) {
       this.props.getPost(this.props.postId);
-    } else {
+    } else if (this.props.isNew) {
       this.props.clearPost();
     }
 
@@ -53,7 +54,7 @@ class PostForm extends PureComponent {
   componentWillReceiveProps(props) {
     if (props.postId) {
       this.props.getPost(props.postId);
-    } else {
+    } else if (props.isNew) {
       this.props.clearPost();
     }
   }

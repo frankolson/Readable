@@ -33,7 +33,7 @@ class App extends PureComponent {
 
           <Route path="/posts/new" render={() => (
             <div className="container container-small">
-              <PostFormContainer />
+              <PostFormContainer isNew/>
             </div>
           )} />
 

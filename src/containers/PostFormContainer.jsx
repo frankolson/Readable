@@ -8,8 +8,9 @@ import * as currentPostActions from '../actions/currentPostActions';
 import { getCategories } from '../actions/categoryActions';
 import { clearCurrentPost, getCurrentPost } from '../actions/currentPostActions';
 
-const mapStateToProps = ({ categories, currentPost }, { postId }) => ({
+const mapStateToProps = ({ categories, currentPost }, { postId, isNew }) => ({
   categories: Object.keys(categories).map(category => categories[category]),
+  isNew: isNew ? true : false,
   post: currentPost,
   postId,
 })
