@@ -11,7 +11,7 @@ export const clearCurrentPost = () => ({
 })
 
 export const downVotePost = (post) => {
-  return dispatch => api.postPostVote(post.id, "downVote")
+  return dispatch => api.postPostVote(post, "downVote")
   .then(res => {
     dispatch(getCurrentPost(post.id));
     dispatch(updatePost(res));
@@ -70,7 +70,7 @@ export const updateCurentPostTitle = (title) => ({
 })
 
 export const upVotePost = (post) => {
-  return dispatch => api.postPostVote(post.id, "upVote")
+  return dispatch => api.postPostVote(post, "upVote")
   .then(res =>{
     dispatch(getCurrentPost(post.id));
     dispatch(updatePost(res));

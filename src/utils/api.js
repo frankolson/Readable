@@ -55,15 +55,14 @@ export const postPost = (params) =>
   firebase.database().ref(`/posts/${params.id}`).set(params)
     .then(() => getPost(params.id))
 
-export const postPostVote = (postId, option) =>
-  fetch(`${api}/posts/${postId}`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ option })
-  }).then(res => res.json())
+export const postPostVote = (post, option) => {
+  const score = (option === "upVote")
+    ? (post.voteScore + 1)
+    : (post.voteScore - 1);
+
+  return firebase.database().ref(`/posts/${post.id}/voteScore`).set(score)
+    .then(() => getPost(post.id))
+}
 
 export const putPost = (params) =>
   fetch(`${api}/posts/${params.id}`, {
