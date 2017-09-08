@@ -26,17 +26,12 @@ export const getCategoriesPosts = (category) =>
 // Post API calls
 
 export const deletePost = (postId) =>
-  fetch(`${api}/posts/${postId}`, {
-    method: 'DELETE',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-  })
+  firebase.database().ref(`/posts/${postId}/deleted`).set(true)
+    .then(() => getPost(postId))
 
 export const getPost = (postId) =>
-  fetch(`${api}/posts/${postId}`, { headers })
-    .then(res => res.json())
+  firebase.database().ref(`/posts/${postId}`).once('value')
+    .then(snapshot => snapshot.val())
 
 export const getComments = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
@@ -47,14 +42,8 @@ export const getPosts = () =>
     .then(snapshot => snapshot.val())
 
 export const postPost = (params) =>
-  fetch(`${api}/posts`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(params)
-  }).then(res => res.json())
+  firebase.database().ref(`/posts/${params.id}`).set(params)
+    .then(() => getPost(params.id))
 
 export const postPostVote = (postId, option) =>
   fetch(`${api}/posts/${postId}`, {
