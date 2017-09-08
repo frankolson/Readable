@@ -1,3 +1,6 @@
+// Project Assets
+import firebase from '../fire.js';
+
 const api = "http://localhost:5001"
 
 // Generate a unique token for the backend server authentication headers.
@@ -13,9 +16,8 @@ const headers = {
 // Category API calls
 
 export const getCategories = () =>
-  fetch(`${api}/categories`, { headers })
-    .then(res => res.json())
-    .then(data => data.categories)
+  firebase.database().ref('/categories').once('value')
+    .then(snapshot => snapshot.val())
 
 export const getCategoriesPosts = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
@@ -41,8 +43,8 @@ export const getComments = (postId) =>
     .then(res => res.json())
 
 export const getPosts = () =>
-  fetch(`${api}/posts`, { headers })
-    .then(res => res.json())
+  firebase.database().ref('/posts').once('value')
+    .then(snapshot => snapshot.val())
 
 export const postPost = (params) =>
   fetch(`${api}/posts`, {

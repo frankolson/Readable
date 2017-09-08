@@ -19,10 +19,7 @@ export const getPosts = () => {
     .then(posts => {
       dispatch({
         type: postActionTypes.ADD_POSTS,
-        posts: posts.reduce((accumulator, post) => ({
-          ...accumulator,
-          [post.id]: { ...post },
-        }), {}),
+        posts: posts,
       });
     });
 }
