@@ -65,14 +65,8 @@ export const postPostVote = (post, option) => {
 }
 
 export const putPost = (params) =>
-  fetch(`${api}/posts/${params.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(params)
-  }).then(res => res.json())
+  firebase.database().ref(`/posts/${params.id}`).update(params)
+    .then(() => getPost(params.id))
 
 // Comment API calls
 
