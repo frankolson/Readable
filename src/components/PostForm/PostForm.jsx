@@ -21,12 +21,10 @@ const propTypes = {
   }),
   getCategories: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
   isNew: PropTypes.bool.isRequired,
   postId: PropTypes.string,
-  updateCurentPostAuthor: PropTypes.func.isRequired,
-  updateCurentPostBody: PropTypes.func.isRequired,
-  updateCurentPostCategory: PropTypes.func.isRequired,
-  updateCurentPostTitle: PropTypes.func.isRequired,
 }
 
 const defaultProps = {
@@ -37,8 +35,20 @@ class PostForm extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      author: this.props.post.author || '',
+      body: this.props.post.body || '',
+      category: this.props.post.category || '',
+      id: this.props.post.id || '',
+      title: this.props.post.title || '',
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.updateAuthor = this.updateAuthor.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+    this.updateCategory = this.updateCategory.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
   componentDidMount() {
@@ -53,16 +63,32 @@ class PostForm extends PureComponent {
 
   componentWillReceiveProps(props) {
     if (props.postId) {
-      this.props.getPost(props.postId);
+      if (this.state.id !== props.postId) {
+        this.props.getPost(props.postId);
+        this.setState({
+          author: props.post.author || '',
+          body: props.post.body || '',
+          category: props.post.category || '',
+          id: props.post.id || '',
+          title: props.post.title || '',
+        })
+      }
     } else if (props.isNew) {
       this.props.clearPost();
+      this.setState({
+        author: props.post.author || '',
+        body: props.post.body || '',
+        category: props.post.category || '',
+        id: props.post.id || '',
+        title: props.post.title || '',
+      })
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.handleSubmit({
-      ...this.props.post,
+      ...this.state,
       id: uuid(),
       timestamp: new Date().getTime(),
     })
@@ -71,38 +97,55 @@ class PostForm extends PureComponent {
   handleUpdate(event) {
     event.preventDefault();
     this.props.handleUpdate({
-      ...this.props.post,
+      ...this.state,
       timestamp: new Date().getTime(),
     })
   }
 
+  updateAuthor(author) {
+    this.setState({ author });
+  }
+
+  updateBody(body) {
+    this.setState({ body });
+  }
+
+  updateCategory(category) {
+    this.setState({ category });
+  }
+
+  updateTitle(title) {
+    this.setState({ title });
+  }
+
   render() {
-    const { author, body, category, id, title } = this.props.post;
+    const { id } = this.props.post;
+    const { author, body, category, title } = this.state;
     const { categories } = this.props;
 
     return (
       <form onSubmit={id ? this.handleUpdate : this.handleSubmit}>
         <TextInput
-          onChange={this.props.updateCurentPostTitle}
+          onChange={this.updateTitle}
           placeholder="Awesome title"
           value={title}
         />
 
         <TextInput
-          onChange={this.props.updateCurentPostAuthor}
+          onChange={this.updateAuthor}
           placeholder="Tell everyone your name"
           value={author}
         />
 
         <SelectInput
-          onChange={this.props.updateCurentPostCategory}
+          onChange={this.updateCategory}
           options={categories}
           placeholder="Select a category"
           value={category}
         />
 
         <TextareaInput
-          onChange={this.props.updateCurentPostBody}
+          onChange={this.updateBody}
           placeholder="What do you have to say?"
           value={body}
         />

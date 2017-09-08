@@ -38,7 +38,6 @@ export const postPost = (post) => {
     );
 }
 
-
 export const putPost = (post) => {
   return dispatch => api.putPost(post)
     .then(post =>
@@ -48,26 +47,6 @@ export const putPost = (post) => {
       dispatch(routerActions.push(`/${post.category}/${post.id}`))
     );
 }
-
-export const updateCurentPostAuthor = (author) => ({
-  type: actionTypes.UPDATE_CURRENT_POST_AUTHOR,
-  author,
-})
-
-export const updateCurentPostBody = (body) => ({
-  type: actionTypes.UPDATE_CURRENT_POST_BODY,
-  body,
-})
-
-export const updateCurentPostCategory = (category) => ({
-  type: actionTypes.UPDATE_CURRENT_POST_CATEGORY,
-  category,
-})
-
-export const updateCurentPostTitle = (title) => ({
-  type: actionTypes.UPDATE_CURRENT_POST_TITLE,
-  title,
-})
 
 export const upVotePost = (post) => {
   return dispatch => api.postPostVote(post, "upVote")
