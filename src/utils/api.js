@@ -20,8 +20,13 @@ export const getCategories = () =>
     .then(snapshot => snapshot.val())
 
 export const getCategoriesPosts = (category) =>
-  fetch(`${api}/${category}/posts`, { headers })
-    .then(res => res.json())
+  firebase.database().ref('/posts').once('value')
+    .then(snapshot => snapshot.val())
+    .then(res =>
+      Object.keys(res)
+        .map(post => res[post])
+        .filter(post => post.category === category)
+    )
 
 // Post API calls
 
@@ -34,8 +39,13 @@ export const getPost = (postId) =>
     .then(snapshot => snapshot.val())
 
 export const getComments = (postId) =>
-  fetch(`${api}/posts/${postId}/comments`, { headers })
-    .then(res => res.json())
+  firebase.database().ref('/comments').once('value')
+    .then(snapshot => snapshot.val())
+    .then(res =>
+      Object.keys(res)
+        .map(comment => res[comment])
+        .filter(comment => comment.parentId === postId)
+    )
 
 export const getPosts = () =>
   firebase.database().ref('/posts').once('value')
