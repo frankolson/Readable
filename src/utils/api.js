@@ -1,18 +1,6 @@
 // Project Assets
 import firebase from '../fire.js';
 
-const api = "http://localhost:5001"
-
-// Generate a unique token for the backend server authentication headers.
-let token = localStorage.token
-if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
-
-const headers = {
-  'Accept': 'application/json',
-  'Authorization': token
-}
-
 // Category API calls
 
 export const getCategories = () =>
