@@ -1,4 +1,6 @@
-# Readable: A blogging site for those who like it simple
+# Readable:
+
+A blogging site for those who like it simple. Check out the demo at: [https://readabl-a1d16.firebaseapp.com](https://readabl-a1d16.firebaseapp.com)
 
 ## Getting Started
 
