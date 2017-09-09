@@ -71,27 +71,16 @@ export const putPost = (params) =>
 // Comment API calls
 
 export const deleteComment = (commentId) =>
-  fetch(`${api}/comments/${commentId}`, {
-    method: 'DELETE',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-  }).then(res => res.json())
+  firebase.database().ref(`/comments/${commentId}/deleted`).set(true)
+    .then(() => getComment(commentId))
 
 export const getComment = (commentId) =>
-  fetch(`${api}/comments/${commentId}`, { headers })
-    .then(res => res.json())
+  firebase.database().ref(`/comments/${commentId}`).once('value')
+    .then(snapshot => snapshot.val())
 
 export const postComment = (params) =>
-  fetch(`${api}/comments`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(params)
-  }).then(res => res.json())
+  firebase.database().ref(`/comments/${params.id}`).set(params)
+    .then(() => getComment(params.id))
 
 export const postCommentVote = (commentId, option) =>
   fetch(`${api}/comments/${commentId}`, {

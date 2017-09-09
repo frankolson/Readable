@@ -89,8 +89,10 @@ class PostForm extends PureComponent {
     event.preventDefault();
     this.props.handleSubmit({
       ...this.state,
+      deleted: false,
       id: uuid(),
       timestamp: new Date().getTime(),
+      voteScore: 1,
     })
   }
 

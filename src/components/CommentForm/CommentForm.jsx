@@ -34,9 +34,11 @@ class CommentForm extends PureComponent {
     event.preventDefault();
     this.props.handleSubmit({
       ...this.props.comment,
+      deleted: false,
       id: uuid(),
       parentId: this.props.postId,
       timestamp: new Date().getTime(),
+      voteScore: 1,
     })
   }
 
