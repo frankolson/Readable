@@ -29,7 +29,7 @@ export const deleteComment = (comment) => {
 }
 
 export const downVoteComment = (comment) => {
-  return dispatch => api.postCommentVote(comment.id, "downVote")
+  return dispatch => api.postCommentVote(comment, "downVote")
   .then(res =>
     dispatch(commentsActions.getComments(comment.parentId))
   );
@@ -62,7 +62,7 @@ export const updateCurentCommentBody = (body) => ({
 })
 
 export const upVoteComment = (comment) => {
-  return dispatch => api.postCommentVote(comment.id, "upVote")
+  return dispatch => api.postCommentVote(comment, "upVote")
   .then(res =>
     dispatch(commentsActions.getComments(comment.parentId))
   );

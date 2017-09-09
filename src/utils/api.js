@@ -82,22 +82,15 @@ export const postComment = (params) =>
   firebase.database().ref(`/comments/${params.id}`).set(params)
     .then(() => getComment(params.id))
 
-export const postCommentVote = (commentId, option) =>
-  fetch(`${api}/comments/${commentId}`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ option })
-  }).then(res => res.json())
+export const postCommentVote = (comment, option) => {
+  const score = (option === "upVote")
+    ? (comment.voteScore + 1)
+    : (comment.voteScore - 1);
 
-export const putComment = (comment) =>
-  fetch(`${api}/comments/${comment.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(comment)
-  }).then(res => res.json())
+  return firebase.database().ref(`/comments/${comment.id}/voteScore`).set(score)
+    .then(() => getPost(comment.id))
+}
+
+export const putComment = (params) =>
+  firebase.database().ref(`/comments/${params.id}`).update(params)
+    .then(() => getComment(params.id))
